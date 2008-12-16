@@ -1,0 +1,707 @@
+# Simplified Chinese translation of pcsx-df.
+# Copyright (C) 2008 Wei Mingzhi
+# This file is distributed under the same license as the pcsx-df package.
+# Wei Mingzhi <whistler@openoffice.org>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pcsx-df 1.7\n"
+"Report-Msgid-Bugs-To: schultz.ryan@gmail.com\n"
+"POT-Creation-Date: 2006-05-24 20:52+1000\n"
+"PO-Revision-Date: 2008-06-15 22:30+0700\n"
+"Last-Translator: Wei Mingzhi <whistler@openoffice.org>\n"
+"Language-Team: Simplified Chinese <whistler@openoffice.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gui/Gtk2Gui.c:327
+msgid "Select PSX EXE File"
+msgstr "选择 PS EXE 文件"
+
+#: gui/Gtk2Gui.c:381
+#: gui/LnxMain.c:192
+#, c-format
+msgid "Could not load CD-ROM!\n"
+msgstr "无法加载光盘。\n"
+
+#: gui/Gtk2Gui.c:468
+#, c-format
+msgid "Loaded state %d."
+msgstr "已读取存档 %d。"
+
+#: gui/Gtk2Gui.c:469
+#: gui/Plugin.c:111
+#, c-format
+msgid "Error loading state %d!"
+msgstr "读取存档 %d 时出错。"
+
+#: gui/Gtk2Gui.c:504
+#, c-format
+msgid "Saved state %d."
+msgstr "已保存存档 %d。"
+
+#: gui/Gtk2Gui.c:505
+#: gui/Plugin.c:94
+#, c-format
+msgid "Error saving state %d!"
+msgstr "保存存档 %d 时出错。"
+
+#: gui/Gtk2Gui.c:526
+#: gui/Gtk2Gui.c:578
+msgid "Select State File"
+msgstr "选择存档文件"
+
+#: gui/Gtk2Gui.c:553
+#, c-format
+msgid "Loaded state: %s"
+msgstr "已读取存档: %s"
+
+#: gui/Gtk2Gui.c:554
+#, c-format
+msgid "Error loading state: %s"
+msgstr "读取存档 %s 时出错。"
+
+#: gui/Gtk2Gui.c:604
+#, c-format
+msgid "Saved state %s."
+msgstr "已保存存档 %s"
+
+#: gui/Gtk2Gui.c:606
+#, c-format
+msgid "Error saving state %s!"
+msgstr "保存存档 %s 时出错。"
+
+#: gui/Gtk2Gui.c:718
+#: gui/Gtk2Gui.c:1859
+msgid "Error: Glade interface could not be loaded!"
+msgstr "错误：无法加载 Glade 界面!"
+
+#: gui/Gtk2Gui.c:767
+msgid "Icon"
+msgstr "图标"
+
+#: gui/Gtk2Gui.c:776
+msgid "Title"
+msgstr "标题"
+
+#: gui/Gtk2Gui.c:785
+msgid "Status"
+msgstr "状态"
+
+#: gui/Gtk2Gui.c:794
+msgid "ID"
+msgstr "ID"
+
+#: gui/Gtk2Gui.c:803
+msgid "Name"
+msgstr "名称"
+
+#: gui/Gtk2Gui.c:874
+#: gui/Gtk2Gui.c:1307
+msgid "Deleted"
+msgstr "已删除"
+
+#: gui/Gtk2Gui.c:875
+#: gui/Gtk2Gui.c:878
+#: gui/Gtk2Gui.c:1308
+#: gui/Gtk2Gui.c:1311
+msgid "Free"
+msgstr "空闲"
+
+#: gui/Gtk2Gui.c:877
+#: gui/Gtk2Gui.c:1310
+msgid "Used"
+msgstr "已使用"
+
+#: gui/Gtk2Gui.c:994
+msgid "Select Memory Card"
+msgstr "请选择存储卡"
+
+#: gui/Gtk2Gui.c:1059
+msgid "Format this Memory Card?"
+msgstr "格式化此存储卡?"
+
+#: gui/Gtk2Gui.c:1062
+msgid "If you format the memory card, the contents will be overwritten."
+msgstr "如您选择格式化存储卡，卡中的内容将被清空。"
+
+#: gui/Gtk2Gui.c:1066
+msgid "Format card"
+msgstr "格式化存储卡"
+
+#: gui/Gtk2Gui.c:1148
+msgid "Paste this selection?"
+msgstr "粘贴此选中内容?"
+
+#: gui/Gtk2Gui.c:1151
+msgid "Are you sure you want to paste this selection?"
+msgstr "是否确认粘贴此选中内容?"
+
+#: gui/Gtk2Gui.c:1155
+#: data/pcsx.glade2:2844
+msgid "Paste"
+msgstr "粘贴"
+
+#: gui/Gtk2Gui.c:1362
+msgid "Memory Card Manager"
+msgstr "存储卡管理器"
+
+#: gui/Gtk2Gui.c:1662
+msgid "This plugin doesn't need to be configured."
+msgstr "此插件需要被配置。"
+
+#: gui/Gtk2Gui.c:1689
+msgid "This plugin reports that it should work correctly."
+msgstr "此插件报告其可正常工作。"
+
+#: gui/Gtk2Gui.c:1690
+msgid "This plugin reports that it won't work correctly."
+msgstr "此插件报告其不可正常工作。"
+
+#: gui/Gtk2Gui.c:1867
+#: data/pcsx.glade2:688
+msgid "Configure PCSX"
+msgstr "配置 PCSX"
+
+#: gui/Gtk2Gui.c:2031
+#: gui/Gtk2Gui.c:2077
+#: gui/Gtk2Gui.c:2160
+#: gui/Gtk2Gui.c:2226
+#: gui/Gtk2Gui.c:2251
+#: gui/Gtk2Gui.c:2305
+#, c-format
+msgid "Could not open directory: '%s'\n"
+msgstr "无法打开目录: \"%s\"\n"
+
+#: gui/Gtk2Gui.c:2220
+msgid "Internal HLE Bios"
+msgstr "内部 HLE-Bios"
+
+#: gui/Gtk2Gui.c:2361
+msgid "Notice"
+msgstr "警告"
+
+#: gui/LnxMain.c:81
+msgid ""
+" pcsx [options] [file]\n"
+"\toptions:\n"
+"\t-runcd\t\tRuns CD-ROM\n"
+"\t-runcdbios\tRuns CD-ROM through BIOS\n"
+"\t-nogui\t\tDon't open the GTK GUI\n"
+"\t-cfg FILE\tLoads desired configuration file (default: ~/.pcsx/pcsx.cfg)\n"
+"\t-psxout\t\tEnable PSX output\n"
+"\t-load STATENUM\tLoads savestate STATENUM (1-5)\n"
+"\t-h -help\tDisplay this message\n"
+"\tfile\t\tLoads file\n"
+msgstr ""
+
+#: gui/LnxMain.c:96
+msgid "Disabled"
+msgstr "禁用"
+
+#: gui/LnxMain.c:111
+#, c-format
+msgid "PCSX cannot be configured without using the GUI -- you should restart without -nogui.\n"
+msgstr "PCSX 不能在字符界面下配置 -- 请不使用 -nogui 参数重新启动程序\n"
+
+#: gui/Plugin.c:93
+#, c-format
+msgid "Saved state %d!"
+msgstr "存档 %d 已保存!"
+
+#: gui/Plugin.c:110
+#, c-format
+msgid "Loaded state %d!"
+msgstr "存档 %d 已读取!"
+
+#: gui/Plugin.c:120
+#: data/pcsx.glade2:1738
+#, c-format
+msgid "SIO IRQ Always Enabled"
+msgstr "SIO IRQ 总是启用"
+
+#: gui/Plugin.c:121
+#, c-format
+msgid "SIO IRQ Not Always Enabled"
+msgstr "SIO IRQ 不总是启用"
+
+#: gui/Plugin.c:127
+#, c-format
+msgid "Black & White Mdecs Only Enabled"
+msgstr "Black & White Mdecs Only 启用"
+
+#: gui/Plugin.c:128
+#, c-format
+msgid "Black & White Mdecs Only Disabled"
+msgstr "Black & White Mdecs Only 禁用"
+
+#: gui/Plugin.c:134
+#, c-format
+msgid "XA Enabled"
+msgstr "XA 已启用"
+
+#: gui/Plugin.c:135
+#, c-format
+msgid "XA Disabled"
+msgstr "XA 已禁用"
+
+#: gui/Plugin.c:205
+msgid "Error opening CD-ROM plugin!"
+msgstr "无法打开 CD-ROM 插件!"
+
+#: gui/Plugin.c:207
+msgid "Error opening SPU plugin!"
+msgstr "无法打开 SPU 插件!"
+
+#: gui/Plugin.c:210
+msgid "Error opening GPU plugin!"
+msgstr "无法打开 GPU 插件!"
+
+#: gui/Plugin.c:212
+msgid "Error opening Controller 1 plugin!"
+msgstr "无法打开 \"控制器 1\" 插件!"
+
+#: gui/Plugin.c:214
+msgid "Error opening Controller 2 plugin!"
+msgstr "无法打开 \"控制器 2\" 插件!"
+
+#: gui/Plugin.c:295
+msgid "Error closing CD-ROM plugin!"
+msgstr "无法关闭 CD-ROM 插件!"
+
+#: gui/Plugin.c:297
+msgid "Error closing SPU plugin!"
+msgstr "无法关闭 SPU 插件!"
+
+#: gui/Plugin.c:299
+msgid "Error closing Controller 1 Plugin!"
+msgstr "无法关闭 \"控制器 1\" 插件!"
+
+#: gui/Plugin.c:301
+msgid "Error closing Controller 2 plugin!"
+msgstr "无法关闭 \"控制器 2\" 插件!"
+
+#: gui/Plugin.c:303
+msgid "Error closing GPU plugin!"
+msgstr "无法关闭 GPU 插件!"
+
+#: gui/Plugin.c:321
+#: emulator/plugins.c:761
+#, c-format
+msgid "Error initializing CD-ROM plugin: %d"
+msgstr "CD-ROM 插件初始化错误: %d"
+
+#: gui/Plugin.c:323
+#: emulator/plugins.c:763
+#, c-format
+msgid "Error initializing GPU plugin: %d"
+msgstr "GPU 插件初始化错误: %d"
+
+#: gui/Plugin.c:325
+#: emulator/plugins.c:765
+#, c-format
+msgid "Error initializing SPU plugin: %d"
+msgstr "SPU 插件初始化错误: %d"
+
+#: gui/Plugin.c:327
+#: emulator/plugins.c:767
+#, c-format
+msgid "Error initializing Controller 1 plugin: %d"
+msgstr "\"控制器1\" 插件初始化错误: %d"
+
+#: gui/Plugin.c:329
+#: emulator/plugins.c:769
+#, c-format
+msgid "Error initializing Controller 2 plugin: %d"
+msgstr "\"控制器2\" 插件初始化错误: %d"
+
+#: gui/Plugin.c:332
+#: emulator/plugins.c:772
+#, c-format
+msgid "Error initializing NetPlay plugin: %d"
+msgstr "联网游戏插件初始化错误: %d"
+
+#: data/pcsx.glade2:10
+msgid "PCSX"
+msgstr "PCSX"
+
+#: data/pcsx.glade2:41
+msgid "File"
+msgstr "文件"
+
+#: data/pcsx.glade2:50
+msgid "Run CD"
+msgstr "运行光碟"
+
+#: data/pcsx.glade2:72
+msgid "Run CD Through BIOS"
+msgstr "使用 BIOS 运行光碟"
+
+#: data/pcsx.glade2:94
+msgid "Run EXE"
+msgstr "运行 EXE"
+
+#: data/pcsx.glade2:122
+msgid "States"
+msgstr "存档"
+
+#: data/pcsx.glade2:143
+msgid "Load"
+msgstr "读取"
+
+#: data/pcsx.glade2:164
+#: data/pcsx.glade2:261
+msgid "Slot 1"
+msgstr "存档 1"
+
+#: data/pcsx.glade2:174
+#: data/pcsx.glade2:271
+msgid "Slot 2"
+msgstr "存档 2"
+
+#: data/pcsx.glade2:184
+#: data/pcsx.glade2:281
+msgid "Slot 3"
+msgstr "存档 3"
+
+#: data/pcsx.glade2:194
+#: data/pcsx.glade2:291
+msgid "Slot 4"
+msgstr "存档 4"
+
+#: data/pcsx.glade2:204
+#: data/pcsx.glade2:301
+msgid "Slot 5"
+msgstr "存档 5"
+
+#: data/pcsx.glade2:214
+#: data/pcsx.glade2:311
+msgid "Other..."
+msgstr "其它..."
+
+#: data/pcsx.glade2:240
+msgid "Save"
+msgstr "保存"
+
+#: data/pcsx.glade2:347
+msgid "Exit"
+msgstr "退出"
+
+#: data/pcsx.glade2:373
+msgid "Emulator"
+msgstr "模拟器"
+
+#: data/pcsx.glade2:382
+msgid "Run"
+msgstr "运行"
+
+#: data/pcsx.glade2:403
+msgid "Reset"
+msgstr "复位"
+
+#: data/pcsx.glade2:428
+msgid "Configuration"
+msgstr "配置"
+
+#: data/pcsx.glade2:437
+msgid "Plugins & BIOS"
+msgstr "插件及 BIOS"
+
+#: data/pcsx.glade2:465
+msgid "Graphics"
+msgstr "图像"
+
+#: data/pcsx.glade2:486
+msgid "Sound"
+msgstr "声音"
+
+#: data/pcsx.glade2:507
+msgid "CD-ROM"
+msgstr "CD-ROM"
+
+#: data/pcsx.glade2:528
+msgid "Controllers"
+msgstr "控制器"
+
+#: data/pcsx.glade2:555
+msgid "Netplay"
+msgstr "联网游戏"
+
+#: data/pcsx.glade2:582
+msgid "CPU"
+msgstr "CPU"
+
+#: data/pcsx.glade2:603
+msgid "Memory Cards"
+msgstr "存储卡"
+
+#: data/pcsx.glade2:629
+msgid "Help"
+msgstr "帮助"
+
+#: data/pcsx.glade2:638
+msgid "About PCSX"
+msgstr "关于 PCSX"
+
+#: data/pcsx.glade2:805
+msgid "CD-ROM:"
+msgstr "CD-ROM:"
+
+#: data/pcsx.glade2:833
+msgid "Controller 2:"
+msgstr "控制器 2:"
+
+#: data/pcsx.glade2:861
+msgid "Controller 1:   "
+msgstr "控制器 1:"
+
+#: data/pcsx.glade2:889
+msgid "Sound:"
+msgstr "声音:"
+
+#: data/pcsx.glade2:917
+msgid "Graphics:"
+msgstr "图像:"
+
+#: data/pcsx.glade2:1294
+msgid "Search in:"
+msgstr "在此处查找插件:"
+
+#: data/pcsx.glade2:1322
+msgid "Select Folder to Search"
+msgstr "选择要查找的文件夹"
+
+#: data/pcsx.glade2:1467
+msgid "<b>Plugins</b>"
+msgstr "<b>插件</b>"
+
+#: data/pcsx.glade2:1553
+msgid "Select A File"
+msgstr "选择一个文件"
+
+#: data/pcsx.glade2:1574
+msgid "<b>BIOS</b>"
+msgstr "<b>BIOS</b>"
+
+#: data/pcsx.glade2:1613
+msgid "Configure CPU"
+msgstr "配置 CPU"
+
+#: data/pcsx.glade2:1694
+msgid "Disable XA Decoding"
+msgstr "禁用 XA 解码"
+
+#: data/pcsx.glade2:1716
+msgid "Disable CD Audio"
+msgstr "禁用 CD 音频"
+
+#: data/pcsx.glade2:1760
+msgid "Enable Interpreter CPU"
+msgstr "启用解释执行 CPU"
+
+#: data/pcsx.glade2:1782
+msgid "Enable Console Output"
+msgstr "启用控制台输出"
+
+#: data/pcsx.glade2:1804
+msgid "Black & White Movies"
+msgstr "黑白电影"
+
+#: data/pcsx.glade2:1826
+msgid "SPU IRQ Always Enabled"
+msgstr "SPU IRQ 总是启用"
+
+#: data/pcsx.glade2:1855
+msgid "Parasite Eve 2, Vandal Hearts 1/2 Fix"
+msgstr "Parasite Eve 2, Vandal Hearts 1/2 修正"
+
+#: data/pcsx.glade2:1874
+msgid "InuYasha Sengoku Battle Fix"
+msgstr "InuYasha Sengoku 战斗修正"
+
+#: data/pcsx.glade2:1894
+msgid "<b>Options</b>"
+msgstr "<b>选项</b>"
+
+#: data/pcsx.glade2:1940
+msgid "Autodetect"
+msgstr "自动检测"
+
+#: data/pcsx.glade2:1959
+msgid ""
+"NTSC\n"
+"PAL"
+msgstr ""
+"NTSC\n"
+"PAL"
+
+#: data/pcsx.glade2:1976
+msgid "<b>System Type</b>"
+msgstr "<b>系统类型</b>"
+
+#: data/pcsx.glade2:2015
+msgid "Configure NetPlay"
+msgstr "配置联网游戏"
+
+#: data/pcsx.glade2:2188
+msgid "<b>NetPlay</b>"
+msgstr "<b>联网游戏</b>"
+
+#: data/pcsx.glade2:2227
+msgid "Configure Memory Cards"
+msgstr "配置存储卡"
+
+#: data/pcsx.glade2:2380
+#: data/pcsx.glade2:3129
+msgid "Select"
+msgstr "选择"
+
+#: data/pcsx.glade2:2455
+#: data/pcsx.glade2:3204
+msgid "Format"
+msgstr "格式化"
+
+#: data/pcsx.glade2:2530
+#: data/pcsx.glade2:3279
+msgid "Reload"
+msgstr "重新加载"
+
+#: data/pcsx.glade2:2595
+msgid "<b>Memory Card 1</b>"
+msgstr "<b>存储卡 1</b>"
+
+#: data/pcsx.glade2:2694
+#: data/pcsx.glade2:2769
+msgid "Copy"
+msgstr "复制"
+
+#: data/pcsx.glade2:2919
+#: data/pcsx.glade2:2994
+msgid "Un/Delete"
+msgstr "删除/恢复"
+
+#: data/pcsx.glade2:3344
+msgid "<b>Memory Card 2</b>"
+msgstr "<b>存储卡 2</b>"
+
+#: data/pcsx.glade2:3391
+msgid "PCSX 1.7df"
+msgstr "PCSX 1.7df"
+
+#: data/pcsx.glade2:3392
+msgid ""
+"(C) 1999-2003  PCSX Team\n"
+"(C) 2005-2006 Ryan Schultz\n"
+"(C) 2005-2006 Andrew Burton"
+msgstr ""
+"(C) 1999-2003  PCSX 开发组\n"
+"(C) 2005-2006 Ryan Schultz\n"
+"(C) 2005-2006 Andrew Burton"
+
+#: data/pcsx.glade2:3395
+msgid "A Playstation emulator for GNU/Linux."
+msgstr "一个 GNU/Linux 系统下的 Playstation 模拟器。"
+
+#: data/pcsx.glade2:3396
+msgid "PCSX is licensed under the GNU GPL; see the included COPYING file for more detail."
+msgstr "PCSX 在 GNU GPL 条款下发布；请参看包含的 COPYING 文件。"
+
+#: data/pcsx.glade2:3399
+msgid "PCSX-df Development"
+msgstr "PCSX-df 开发"
+
+#: data/pcsx.glade2:3405
+msgid "translator-credits"
+msgstr "Wei Mingzhi <whistler@openoffice.org>"
+
+#: emulator/Misc.c:350
+#, c-format
+msgid "Error opening file: %s!"
+msgstr "打开文件错误: %s!"
+
+#: emulator/Misc.c:365
+msgid "CPE files not supported!"
+msgstr "CPE 文件不被支持!"
+
+#: emulator/Misc.c:368
+msgid "COFF files not supported!"
+msgstr "COFF 文件不被支持!"
+
+#: emulator/Misc.c:371
+msgid "This file does not appear to be a valid PSX file!"
+msgstr "此文件不是一个合法的 PSX 文件。"
+
+#: emulator/PsxMem.c:39
+msgid "Error allocating memory!"
+msgstr "分配内存错误!"
+
+#: emulator/PsxMem.c:77
+#, c-format
+msgid "Could not open BIOS:\"%s\". Enabling HLE Bios!\n"
+msgstr "无法打开 BIOS: \"%s\"。使用内部 HLE Bios。\n"
+
+#: emulator/Sio.c:108
+msgid "Connection closed!\n"
+msgstr "连接被关闭!\n"
+
+#: emulator/Sio.c:346
+#, c-format
+msgid "Memory card %s failed to load!\n"
+msgstr "存储卡 %s 读取失败!\n"
+
+#: emulator/plugins.c:31
+#, c-format
+msgid "Error loading %s: %s"
+msgstr "无法加载 %s: %s"
+
+#: emulator/plugins.c:162
+#, c-format
+msgid "Could not load GPU plugin %s!"
+msgstr "无法加载 GPU 插件 %s!"
+
+#: emulator/plugins.c:224
+#, c-format
+msgid "Could not load CD-ROM plugin %s!"
+msgstr "无法加载 CD-ROM 插件 %s!"
+
+#: emulator/plugins.c:462
+#, c-format
+msgid "Could not load SPU plugin %s!"
+msgstr "无法加载 SPU 插件 %s!"
+
+#: emulator/plugins.c:610
+#, c-format
+msgid "Could not load Controller 1 plugin %s!"
+msgstr "无法加载 \"控制器1\" 插件 %s!"
+
+#: emulator/plugins.c:664
+#, c-format
+msgid "Could not load Controller 2 plugin %s!"
+msgstr "无法加载 \"控制器2\" 插件 %s!"
+
+#: emulator/plugins.c:707
+#, c-format
+msgid "Could not load NetPlay plugin %s!"
+msgstr "无法加载联网游戏插件 %s!"
+
+msgid "_Configuration"
+msgstr "配置(_C)"
+
+msgid "_File"
+msgstr "文件(_F)"
+
+msgid "_Emulator"
+msgstr "模拟器(_E)"
+
+msgid "_Help"
+msgstr "帮助(_H)"
+
+msgid "Enable Debugger"
+msgstr "启用调试器"
+
+msgid "No space available in the target memory card!"
+msgstr "目标存储卡没有空余位置!"
+
+msgid "If you format the memory card, the card will be empty, and any existing data overwritten."
+msgstr "如果您选择格式化存储卡，存储卡将被清空，并且任何现有数据都将被覆盖。"

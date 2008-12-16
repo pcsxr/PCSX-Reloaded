@@ -1,0 +1,670 @@
+# Swedish translation of pcsx-df.
+# Copyright (C) 2006 Ryan Schultz
+# This file is distributed under the same license as the pcsx-df package.
+# Daniel Nylander <po@danielnylander.se>, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pcsx-df 1.7\n"
+"Report-Msgid-Bugs-To: schultz.ryan@gmail.com\n"
+"POT-Creation-Date: 2006-05-24 20:52+1000\n"
+"PO-Revision-Date: 2006-05-14 12:20+0100\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
+"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: gui/Gtk2Gui.c:327
+msgid "Select PSX EXE File"
+msgstr "Välj PSX EXE-fil"
+
+#: gui/Gtk2Gui.c:381 gui/LnxMain.c:192
+#, c-format
+msgid "Could not load CD-ROM!\n"
+msgstr "Kunde inte läsa cd-rom!\n"
+
+#: gui/Gtk2Gui.c:468
+#, c-format
+msgid "Loaded state %d."
+msgstr "Läste in status %d."
+
+#: gui/Gtk2Gui.c:469 gui/Plugin.c:111
+#, c-format
+msgid "Error loading state %d!"
+msgstr "Fel vid läsning av status %d!"
+
+#: gui/Gtk2Gui.c:504
+#, c-format
+msgid "Saved state %d."
+msgstr "Sparade status %d."
+
+#: gui/Gtk2Gui.c:505 gui/Plugin.c:94
+#, c-format
+msgid "Error saving state %d!"
+msgstr "Fel vid sparning av status %d!"
+
+#: gui/Gtk2Gui.c:526 gui/Gtk2Gui.c:578
+msgid "Select State File"
+msgstr "Välj statusfil"
+
+#: gui/Gtk2Gui.c:553
+#, c-format
+msgid "Loaded state: %s"
+msgstr "Läste in status: %s"
+
+#: gui/Gtk2Gui.c:554
+#, c-format
+msgid "Error loading state: %s"
+msgstr "Fel vid inläsning av status: %s"
+
+#: gui/Gtk2Gui.c:604
+#, c-format
+msgid "Saved state %s."
+msgstr "Sparade status %s"
+
+#: gui/Gtk2Gui.c:606
+#, c-format
+msgid "Error saving state %s!"
+msgstr "Fel vid sparning av status %s!"
+
+#: gui/Gtk2Gui.c:718 gui/Gtk2Gui.c:1859
+msgid "Error: Glade interface could not be loaded!"
+msgstr "Fel: Glade-gränssnittet kunde inte läsas in!"
+
+#: gui/Gtk2Gui.c:767
+msgid "Icon"
+msgstr "Ikon"
+
+#: gui/Gtk2Gui.c:776
+msgid "Title"
+msgstr "Titel"
+
+#: gui/Gtk2Gui.c:785
+msgid "Status"
+msgstr "Status"
+
+#: gui/Gtk2Gui.c:794
+msgid "ID"
+msgstr "ID"
+
+#: gui/Gtk2Gui.c:803
+msgid "Name"
+msgstr "Namn"
+
+#: gui/Gtk2Gui.c:874 gui/Gtk2Gui.c:1307
+msgid "Deleted"
+msgstr "Borttagen"
+
+#: gui/Gtk2Gui.c:875 gui/Gtk2Gui.c:878 gui/Gtk2Gui.c:1308 gui/Gtk2Gui.c:1311
+msgid "Free"
+msgstr "Ledigt"
+
+#: gui/Gtk2Gui.c:877 gui/Gtk2Gui.c:1310
+msgid "Used"
+msgstr "Använt"
+
+#: gui/Gtk2Gui.c:994
+msgid "Select Memory Card"
+msgstr "Välj minneskort"
+
+#: gui/Gtk2Gui.c:1059
+msgid "Format this Memory Card?"
+msgstr "Formatera detta minneskort?"
+
+#: gui/Gtk2Gui.c:1062
+msgid "If you format the memory card, the contents will be overwritten."
+msgstr "Om du formaterar minneskortet kommer dess innehåll att skrivas över."
+
+#: gui/Gtk2Gui.c:1066
+msgid "Format card"
+msgstr "Formatera kort"
+
+#: gui/Gtk2Gui.c:1148
+msgid "Paste this selection?"
+msgstr "Klistra in markeringar?"
+
+#: gui/Gtk2Gui.c:1151
+msgid "Are you sure you want to paste this selection?"
+msgstr "Är du säker på att du vill klistra in dessa markeringar?"
+
+#: gui/Gtk2Gui.c:1155 data/pcsx.glade2:2844
+msgid "Paste"
+msgstr "Klistra in"
+
+#: gui/Gtk2Gui.c:1362
+msgid "Memory Card Manager"
+msgstr "Hantera minneskort"
+
+#: gui/Gtk2Gui.c:1662
+msgid "This plugin doesn't need to be configured."
+msgstr "Detta instick behöver inte konfigureras."
+
+#: gui/Gtk2Gui.c:1689
+msgid "This plugin reports that it should work correctly."
+msgstr "Detta instick är rapporterat att det bör fungera korrekt."
+
+#: gui/Gtk2Gui.c:1690
+msgid "This plugin reports that it won't work correctly."
+msgstr "Detta instick är rapporterat att det inte fungerar korrekt."
+
+#: gui/Gtk2Gui.c:1867 data/pcsx.glade2:688
+msgid "Configure PCSX"
+msgstr "Konfigurera PCSX"
+
+#: gui/Gtk2Gui.c:2031 gui/Gtk2Gui.c:2077 gui/Gtk2Gui.c:2160 gui/Gtk2Gui.c:2226
+#: gui/Gtk2Gui.c:2251 gui/Gtk2Gui.c:2305
+#, c-format
+msgid "Could not open directory: '%s'\n"
+msgstr "Kunde inte öppna katalog: \"%s\"\n"
+
+#: gui/Gtk2Gui.c:2220
+msgid "Internal HLE Bios"
+msgstr "Internt HLE-Bios"
+
+#: gui/Gtk2Gui.c:2361
+msgid "Notice"
+msgstr "Notering"
+
+#: gui/LnxMain.c:81
+msgid ""
+" pcsx [options] [file]\n"
+"\toptions:\n"
+"\t-runcd\t\tRuns CD-ROM\n"
+"\t-runcdbios\tRuns CD-ROM through BIOS\n"
+"\t-nogui\t\tDon't open the GTK GUI\n"
+"\t-cfg FILE\tLoads desired configuration file (default: ~/.pcsx/pcsx.cfg)\n"
+"\t-psxout\t\tEnable PSX output\n"
+"\t-load STATENUM\tLoads savestate STATENUM (1-5)\n"
+"\t-h -help\tDisplay this message\n"
+"\tfile\t\tLoads file\n"
+msgstr ""
+" pcsx [flaggor] [fil]\n"
+"\tflaggor:\n"
+"\t-runcd\t\tKör cd-rom\n"
+"\t-runcdbios\tKör cd-rom genom BIOS\n"
+"\t-nogui\t\tÖppna inte GTK-gränssnitt\n"
+"\t-cfg FILE\tLäser inte önskad konfigurationsfil (förval: ~/.pcsx/pcsx.cfg)\n"
+"\t-psxout\t\tAktivera PSX-utdata\n"
+"\t-load STATUSNUM\tLäser in status STATUSNUM (1-5)\n"
+"\t-h -help\tVisar detta meddelandet\n"
+"\tfile\t\tLäser in fil\n"
+
+#: gui/LnxMain.c:96
+msgid "Disabled"
+msgstr "Avstängd"
+
+#: gui/LnxMain.c:111
+#, c-format
+msgid ""
+"PCSX cannot be configured without using the GUI -- you should restart "
+"without -nogui.\n"
+msgstr ""
+"PCSX kan inte konfigureras utan det grafiska gränssnittet -- du bör starta "
+"om utan -nogui.\n"
+
+#: gui/Plugin.c:93
+#, c-format
+msgid "Saved state %d!"
+msgstr "Sparade status %d!"
+
+#: gui/Plugin.c:110
+#, c-format
+msgid "Loaded state %d!"
+msgstr "Läste in status %d!"
+
+#: gui/Plugin.c:120 data/pcsx.glade2:1738
+#, c-format
+msgid "SIO IRQ Always Enabled"
+msgstr "SIO IRQ Alltid aktiverad"
+
+#: gui/Plugin.c:121
+#, c-format
+msgid "SIO IRQ Not Always Enabled"
+msgstr "SIO IRQ Inte alltid aktiverad"
+
+#: gui/Plugin.c:127
+#, c-format
+msgid "Black & White Mdecs Only Enabled"
+msgstr "Black & White Mdecs Endast aktiverad"
+
+#: gui/Plugin.c:128
+#, c-format
+msgid "Black & White Mdecs Only Disabled"
+msgstr "Black & White Mdecs Endast avstängd"
+
+#: gui/Plugin.c:134
+#, c-format
+msgid "XA Enabled"
+msgstr "XA aktiverad"
+
+#: gui/Plugin.c:135
+#, c-format
+msgid "XA Disabled"
+msgstr "XA avstängd"
+
+#: gui/Plugin.c:205
+msgid "Error opening CD-ROM plugin!"
+msgstr "Fel vid öppning av instick för cd-rom!"
+
+#: gui/Plugin.c:207
+msgid "Error opening SPU plugin!"
+msgstr "Fel vid öppning av instick för SPU!"
+
+#: gui/Plugin.c:210
+msgid "Error opening GPU plugin!"
+msgstr "Fel vid öppning av instick för GPU!"
+
+#: gui/Plugin.c:212
+msgid "Error opening Controller 1 plugin!"
+msgstr "Fel vid öppning av instick för kontroller 1!"
+
+#: gui/Plugin.c:214
+msgid "Error opening Controller 2 plugin!"
+msgstr "Fel vid öppning av instick för kontroller 2!"
+
+#: gui/Plugin.c:295
+msgid "Error closing CD-ROM plugin!"
+msgstr "Fel vid stängning av instick för cd-rom!"
+
+#: gui/Plugin.c:297
+msgid "Error closing SPU plugin!"
+msgstr "Fel vid stängning av instick för SPU!"
+
+#: gui/Plugin.c:299
+msgid "Error closing Controller 1 Plugin!"
+msgstr "Fel vid stängning av instick för kontroller 1!"
+
+#: gui/Plugin.c:301
+msgid "Error closing Controller 2 plugin!"
+msgstr "Fel vid stängning av instick för kontroller 2!"
+
+#: gui/Plugin.c:303
+msgid "Error closing GPU plugin!"
+msgstr "Fel vid stängning av instick för GPU!"
+
+#: gui/Plugin.c:321 emulator/plugins.c:761
+#, c-format
+msgid "Error initializing CD-ROM plugin: %d"
+msgstr "Fel vid initiering av instick för cd-rom: %d"
+
+#: gui/Plugin.c:323 emulator/plugins.c:763
+#, c-format
+msgid "Error initializing GPU plugin: %d"
+msgstr "Fel vid initiering av instick för GPU: %d"
+
+#: gui/Plugin.c:325 emulator/plugins.c:765
+#, c-format
+msgid "Error initializing SPU plugin: %d"
+msgstr "Fel vid initiering av instick för SPU: %d"
+
+#: gui/Plugin.c:327 emulator/plugins.c:767
+#, c-format
+msgid "Error initializing Controller 1 plugin: %d"
+msgstr "Fel vid initiering av insticksmodul för Kontroller 1: %d"
+
+#: gui/Plugin.c:329 emulator/plugins.c:769
+#, c-format
+msgid "Error initializing Controller 2 plugin: %d"
+msgstr "Fel vid initiering av insticksmodul för Kontroller 2: %d"
+
+#: gui/Plugin.c:332 emulator/plugins.c:772
+#, c-format
+msgid "Error initializing NetPlay plugin: %d"
+msgstr "Fel vid initiering av insticksmodul för NetPlay: %d"
+
+#: data/pcsx.glade2:10
+msgid "PCSX"
+msgstr "PCSX"
+
+#: data/pcsx.glade2:41
+msgid "File"
+msgstr "Fil"
+
+#: data/pcsx.glade2:50
+msgid "Run CD"
+msgstr "Kör CD"
+
+#: data/pcsx.glade2:72
+msgid "Run CD Through BIOS"
+msgstr "Kör cd genom BIOS"
+
+#: data/pcsx.glade2:94
+msgid "Run EXE"
+msgstr "Kör EXE"
+
+#: data/pcsx.glade2:122
+msgid "States"
+msgstr "Status"
+
+#: data/pcsx.glade2:143
+msgid "Load"
+msgstr "Läs"
+
+#: data/pcsx.glade2:164 data/pcsx.glade2:261
+msgid "Slot 1"
+msgstr "Plats 1"
+
+#: data/pcsx.glade2:174 data/pcsx.glade2:271
+msgid "Slot 2"
+msgstr "Plats 2"
+
+#: data/pcsx.glade2:184 data/pcsx.glade2:281
+msgid "Slot 3"
+msgstr "Plats 3"
+
+#: data/pcsx.glade2:194 data/pcsx.glade2:291
+msgid "Slot 4"
+msgstr "Plats 4"
+
+#: data/pcsx.glade2:204 data/pcsx.glade2:301
+msgid "Slot 5"
+msgstr "Plats 5"
+
+#: data/pcsx.glade2:214 data/pcsx.glade2:311
+msgid "Other..."
+msgstr "Övrigt..."
+
+#: data/pcsx.glade2:240
+msgid "Save"
+msgstr "Spara"
+
+#: data/pcsx.glade2:347
+msgid "Exit"
+msgstr "Avsluta"
+
+#: data/pcsx.glade2:373
+msgid "Emulator"
+msgstr "Emulator"
+
+#: data/pcsx.glade2:382
+msgid "Run"
+msgstr "Kör"
+
+#: data/pcsx.glade2:403
+msgid "Reset"
+msgstr "Återställ"
+
+#: data/pcsx.glade2:428
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: data/pcsx.glade2:437
+msgid "Plugins & BIOS"
+msgstr "Instick & BIOS"
+
+#: data/pcsx.glade2:465
+msgid "Graphics"
+msgstr "Grafik"
+
+#: data/pcsx.glade2:486
+msgid "Sound"
+msgstr "Ljud"
+
+#: data/pcsx.glade2:507
+msgid "CD-ROM"
+msgstr "Cd-rom"
+
+#: data/pcsx.glade2:528
+msgid "Controllers"
+msgstr "Kontrollrar"
+
+#: data/pcsx.glade2:555
+msgid "NetPlay"
+msgstr "NetPlay"
+
+#: data/pcsx.glade2:582
+msgid "CPU"
+msgstr "CPU"
+
+#: data/pcsx.glade2:603
+msgid "Memory Cards"
+msgstr "Minneskort"
+
+#: data/pcsx.glade2:629
+msgid "Help"
+msgstr "Hjälp"
+
+#: data/pcsx.glade2:638
+msgid "About PCSX"
+msgstr "Om PCSX"
+
+#: data/pcsx.glade2:805
+msgid "CD-ROM:"
+msgstr "Cd-rom:"
+
+#: data/pcsx.glade2:833
+msgid "Controller 2:"
+msgstr "Kontroller 2:"
+
+#: data/pcsx.glade2:861
+msgid "Controller 1:   "
+msgstr "Kontroller 1:"
+
+#: data/pcsx.glade2:889
+msgid "Sound:"
+msgstr "Ljud:"
+
+#: data/pcsx.glade2:917
+msgid "Graphics:"
+msgstr "Grafik:"
+
+#: data/pcsx.glade2:1294
+msgid "Search in:"
+msgstr "Sök i:"
+
+#: data/pcsx.glade2:1322
+msgid "Select Folder to Search"
+msgstr "Välj mapp att söka i"
+
+#: data/pcsx.glade2:1467
+msgid "<b>Plugins</b>"
+msgstr "<b>Insticksmoduler</b>"
+
+#: data/pcsx.glade2:1553
+msgid "Select A File"
+msgstr "Välj en fil"
+
+#: data/pcsx.glade2:1574
+msgid "<b>BIOS</b>"
+msgstr "<b>BIOS</b>"
+
+#: data/pcsx.glade2:1613
+msgid "Configure CPU"
+msgstr "Konfigurera CPU"
+
+#: data/pcsx.glade2:1694
+msgid "Disable XA Decoding"
+msgstr "Stäng av XA-avkodning"
+
+#: data/pcsx.glade2:1716
+msgid "Disable CD Audio"
+msgstr "Stäng av cd-ljud"
+
+#: data/pcsx.glade2:1760
+msgid "Enable Interpreter CPU"
+msgstr "Aktivera Interpreter CPU"
+
+#: data/pcsx.glade2:1782
+msgid "Enable Console Output"
+msgstr "Aktivera konsollutdata"
+
+#: data/pcsx.glade2:1804
+msgid "Black & White Movies"
+msgstr "Filmer i svart & vitt"
+
+#: data/pcsx.glade2:1826
+msgid "SPU IRQ Always Enabled"
+msgstr "SPU IRQ Alltid aktiverad"
+
+#: data/pcsx.glade2:1855
+msgid "Parasite Eve 2, Vandal Hearts 1/2 Fix"
+msgstr "Parasite Eve 2, Vandal Hearts 1/2 Fix"
+
+#: data/pcsx.glade2:1874
+msgid "InuYasha Sengoku Battle Fix"
+msgstr "InuYasha Sengoku Battle Fix"
+
+#: data/pcsx.glade2:1894
+msgid "<b>Options</b>"
+msgstr "<b>Alternativ</b>"
+
+#: data/pcsx.glade2:1940
+msgid "Autodetect"
+msgstr "Auto-Identifiera"
+
+#: data/pcsx.glade2:1959
+msgid ""
+"NTSC\n"
+"PAL"
+msgstr ""
+"NTSC\n"
+"PAL"
+
+#: data/pcsx.glade2:1976
+msgid "<b>System Type</b>"
+msgstr "<b>Systemtyp</b>"
+
+#: data/pcsx.glade2:2015
+msgid "Configure NetPlay"
+msgstr "Konfigurera NetPlay"
+
+#: data/pcsx.glade2:2188
+msgid "<b>NetPlay</b>"
+msgstr "<b>NetPlay</b>"
+
+#: data/pcsx.glade2:2227
+msgid "Configure Memory Cards"
+msgstr "Konfigurera minneskort"
+
+#: data/pcsx.glade2:2380 data/pcsx.glade2:3129
+msgid "Select"
+msgstr "Välj"
+
+#: data/pcsx.glade2:2455 data/pcsx.glade2:3204
+msgid "Format"
+msgstr "Format"
+
+#: data/pcsx.glade2:2530 data/pcsx.glade2:3279
+msgid "Reload"
+msgstr "Läs om"
+
+#: data/pcsx.glade2:2595
+msgid "<b>Memory Card 1</b>"
+msgstr "<b>Minneskort 1</b>"
+
+#: data/pcsx.glade2:2694 data/pcsx.glade2:2769
+msgid "Copy"
+msgstr "Kopiera"
+
+#: data/pcsx.glade2:2919 data/pcsx.glade2:2994
+msgid "Un/Delete"
+msgstr "Ta bort/tillbaka"
+
+#: data/pcsx.glade2:3344
+msgid "<b>Memory Card 2</b>"
+msgstr "<b>Minneskort 2</b>"
+
+#: data/pcsx.glade2:3391
+msgid "PCSX 1.7df"
+msgstr "PCSX 1.7df"
+
+#: data/pcsx.glade2:3392
+msgid ""
+"(C) 1999-2003  PCSX Team\n"
+"(C) 2005-2006 Ryan Schultz\n"
+"(C) 2005-2006 Andrew Burton"
+msgstr ""
+"© 1999-2003  PCSX-teamet\n"
+"© 2005-2006 Ryan Schultz\n"
+"© 2005-2006 Andrew Burton"
+
+#: data/pcsx.glade2:3395
+msgid "A Playstation emulator for GNU/Linux."
+msgstr "En Playstation-emulator för GNU/Linux."
+
+#: data/pcsx.glade2:3396
+msgid ""
+"PCSX is licensed under the GNU GPL; see the included COPYING file for more "
+"detail."
+msgstr ""
+"PCSX är licenserad under GNU GPL; se den inkluderade filen COPYING för mer "
+"detaljer."
+
+#: data/pcsx.glade2:3399
+msgid "PCSX-df Development"
+msgstr "PCSX-df Development"
+
+#: data/pcsx.glade2:3405
+msgid "translator-credits"
+msgstr "Daniel Nylander <po@danielnylander.se>"
+
+#: emulator/Misc.c:350
+#, c-format
+msgid "Error opening file: %s!"
+msgstr "Fel vid öppning av fil: %s!"
+
+#: emulator/Misc.c:365
+msgid "CPE files not supported!"
+msgstr "CPE-filer stöds inte!"
+
+#: emulator/Misc.c:368
+msgid "COFF files not supported!"
+msgstr "COFF-filer stöds inte!"
+
+#: emulator/Misc.c:371
+msgid "This file does not appear to be a valid PSX file!"
+msgstr "Denna fil verkar inte vara en giltig PSX-fil!"
+
+#: emulator/PsxMem.c:39
+msgid "Error allocating memory!"
+msgstr "Fel vid allokering av minne!"
+
+#: emulator/PsxMem.c:77
+#, c-format
+msgid "Could not open BIOS:\"%s\". Enabling HLE Bios!\n"
+msgstr "Kunde inte öppna bios:\"%s\". Aktiverar HLE Bios!\n"
+
+#: emulator/Sio.c:108
+msgid "Connection closed!\n"
+msgstr "Avslutning stängd!\n"
+
+#: emulator/Sio.c:346
+#, c-format
+msgid "Memory card %s failed to load!\n"
+msgstr "Minneskort %s gick inte att läsa!\n"
+
+#: emulator/plugins.c:31
+#, c-format
+msgid "Error loading %s: %s"
+msgstr "Fel vid inläsning av %s: %s"
+
+#: emulator/plugins.c:162
+#, c-format
+msgid "Could not load GPU plugin %s!"
+msgstr "Kunde inte läsa in instick för GPU %s!"
+
+#: emulator/plugins.c:224
+#, c-format
+msgid "Could not load CD-ROM plugin %s!"
+msgstr "Kunde inte läsa in instick för cd-rom %s!"
+
+#: emulator/plugins.c:462
+#, c-format
+msgid "Could not load SPU plugin %s!"
+msgstr "Kunde inte läsa in instick för SPU %s!"
+
+#: emulator/plugins.c:610
+#, c-format
+msgid "Could not load Controller 1 plugin %s!"
+msgstr "Kunde inte läsa in instick för kontroller 1 %s!"
+
+#: emulator/plugins.c:664
+#, c-format
+msgid "Could not load Controller 2 plugin %s!"
+msgstr "Kunde inte läsa in instick för kontroller 2 %s!"
+
+#: emulator/plugins.c:707
+#, c-format
+msgid "Could not load NetPlay plugin %s!"
+msgstr "Kunde inte läsa in instick för NetPlay %s!"

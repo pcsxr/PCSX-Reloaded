@@ -1,0 +1,5 @@
+?package(pcsx-df): \
+	needs="X11" \
+	section="Applications/Emulators" \
+	title="PCSX-df PSX Emulator" \
+	command="/usr/games/pcsx"

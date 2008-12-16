@@ -1,0 +1,8 @@
+Testing of changes can be tested by running
+./cfgDFSound --CFG
+or
+./cfgDFSound --HELP
+at the command line.
+
+The .glade file that is generated needs to be copied to the /usr/share/psemu directory before this plugin can be used.
+
