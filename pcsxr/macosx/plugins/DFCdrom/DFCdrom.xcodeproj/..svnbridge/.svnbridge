@@ -3,4 +3,11 @@
 *.mode1v3
 *.mode2
 *.perspective
+</Value></Property><Property><Name>svn:ignore</Name><Value>*.mode1
+*.pbxuser
+*.mode1v3
+*.mode2
+*.perspective
+project.xcworkspace
+xcuserdata
 </Value></Property></Properties></ItemProperties>
