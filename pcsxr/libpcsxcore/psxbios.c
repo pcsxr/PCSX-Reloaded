@@ -2178,6 +2178,15 @@ void psxBios_Krom2RawAdd() { // 0x51
 	pc0 = ra;
 }
 
+// stub?
+void psxBios__get_error() { // 55
+#ifdef PSXBIOS_LOG
+	PSXBIOS_LOG("psxBios_%s\n", biosB0n[0x55]);
+#endif
+
+	v0 = 0; pc0 = ra;
+}
+
 void psxBios_GetC0Table() { // 56
 #ifdef PSXBIOS_LOG
 	PSXBIOS_LOG("psxBios_%s\n", biosB0n[0x56]);
@@ -2566,7 +2575,7 @@ void psxBiosInit() {
 	//biosB0[0x52] = psxBios_sys_b0_52;
 	//biosB0[0x53] = psxBios_sys_b0_53;
 	//biosB0[0x54] = psxBios__get_errno;
-	//biosB0[0x55] = psxBios__get_error;
+	biosB0[0x55] = psxBios__get_error;
 	biosB0[0x56] = psxBios_GetC0Table;
 	biosB0[0x57] = psxBios_GetB0Table;
 	biosB0[0x58] = psxBios__card_chan;
