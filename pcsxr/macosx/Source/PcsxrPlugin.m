@@ -242,20 +242,15 @@
 #define PluginSymbolNameConfigure(type) PluginSymbolName(type, @"configure")
 #define PluginSymbolNameAbout(type) PluginSymbolName(type, @"about")
 
-- (void)runCommand:(id)arg
+- (void)runCommandNamed:(NSString*)arg
 {
-	@autoreleasepool {
-		NSString *funcName = arg[0];
-		long (*func)(void);
-		
-		func = SysLoadSym(pluginRef, [funcName cStringUsingEncoding:NSASCIIStringEncoding]);
-		if (SysLibError() == NULL) {
-			func();
-		} else {
-			NSBeep();
-		}
-		
-		return;
+	long (*func)(void);
+	
+	func = SysLoadSym(pluginRef, [arg cStringUsingEncoding:NSASCIIStringEncoding]);
+	if (SysLibError() == NULL) {
+		func();
+	} else {
+		NSBeep();
 	}
 }
 
@@ -336,26 +331,24 @@
 
 - (void)aboutAs:(int)aType
 {
-	NSArray *arg;
-	
 	NSString *aboutSym = PluginSymbolNameAbout(aType);
-	arg = @[aboutSym, @0];
+	//NSArray *arg = @[aboutSym, @0];
 	
 	// detach a new thread
-	[NSThread detachNewThreadSelector:@selector(runCommand:) toTarget:self
-						   withObject:arg];
+	dispatch_async(dispatch_get_global_queue(0, 0), ^{
+		[self runCommandNamed:aboutSym];
+	});
 }
 
 - (void)configureAs:(int)aType
 {
-	NSArray *arg;
-	
 	NSString *configSym = PluginSymbolNameConfigure(aType);
-	arg = @[configSym, @1];
+	//NSArray *arg = @[configSym, @1];
 	
 	// detach a new thread
-	[NSThread detachNewThreadSelector:@selector(runCommand:) toTarget:self
-						   withObject:arg];
+	dispatch_async(dispatch_get_global_queue(0, 0), ^{
+		[self runCommandNamed:configSym];
+	});
 }
 
 - (NSString *)displayVersion
