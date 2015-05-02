@@ -369,7 +369,7 @@
 	if (_name == nil)
 		return [path lastPathComponent];
 	
-	return [NSString stringWithFormat:@"%@ %@ [%@]", self.name, [self displayVersion], [path lastPathComponent]];
+	return [NSString stringWithFormat:@"%@ %@ [%@]", self.name, self.displayVersion, path.lastPathComponent];
 }
 
 - (NSString*)debugDescription
@@ -377,7 +377,7 @@
 	if (_name == nil) {
 		return fullPlugPath;
 	}
-	return [NSString stringWithFormat:@"%@, %@ [%@]", self.name, [self displayVersion], fullPlugPath];
+	return [NSString stringWithFormat:@"%@, %@ [%@]", self.name, self.displayVersion, fullPlugPath];
 }
 
 // the plugin will check if it's still valid and return the status

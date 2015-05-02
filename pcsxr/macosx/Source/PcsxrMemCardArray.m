@@ -300,7 +300,6 @@ static inline void ClearMemcardData(char *to, int dsti, char *str)
 
 - (void)deleteMemoryBlocksAtIndex:(int)slotnum
 {
-	int xor = 0, i, j;
 	char *data, *ptr, *filename;
 	if (cardNumber == 1) {
 		filename = Config.Mcd1;
@@ -321,8 +320,9 @@ static inline void ClearMemcardData(char *to, int dsti, char *str)
 	
 	McdBlock flagBlock;
 	
-	for(i = theObj.startingIndex + 1; i < (theObj.startingIndex + theObj.blockSize + 1); i++)
+	for(int i = theObj.startingIndex + 1; i < (theObj.startingIndex + theObj.blockSize + 1); i++)
 	{
+		char xor = 0;
 		GetMcdBlockInfo(cardNumber, i, &flagBlock);
 		ptr = data + i * 128;
 		
@@ -335,7 +335,7 @@ static inline void ClearMemcardData(char *to, int dsti, char *str)
 			*ptr = 0xA0 | (flagBlock.Flags & 0xF);
 		} else { continue; }
 		
-		for (j = 0; j < 127; j++) xor ^= *ptr++;
+		for (unsigned char j = 0; j < 127; j++) xor ^= *ptr++;
 		*ptr = xor;
 		
 		SaveMcd(filename, data, i * 128, 128);
