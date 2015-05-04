@@ -103,9 +103,9 @@ static void GetSoloBlockInfo(unsigned char *data, int block, McdBlock *Info)
 	Info->Flags = *ptr;
 	
 	ptr += 0xa;
-	strlcpy(Info->ID, ptr, 12);
+	strlcpy(Info->ID, ptr, 13);
 	ptr += 12;
-	strlcpy(Info->Name, ptr, 16);
+	strlcpy(Info->Name, ptr, 17);
 }
 
 static inline PCSXRMemFlags MemBlockFlag(unsigned char blockFlags)
