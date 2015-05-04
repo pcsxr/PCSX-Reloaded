@@ -86,23 +86,23 @@ static NSString *MemLabelMultiSave;
 {
 	switch (flagNameIndex) {
 		default:
-		case memFlagFree:
+		case PCSXRMemFlagFree:
 			return MemLabelFree;
 			break;
 			
-		case memFlagEndLink:
+		case PCSXRMemFlagEndLink:
 			return MemLabelEndLink;
 			break;
 			
-		case memFlagLink:
+		case PCSXRMemFlagLink:
 			return MemLabelLink;
 			break;
 			
-		case memFlagUsed:
+		case PCSXRMemFlagUsed:
 			return MemLabelUsed;
 			break;
 			
-		case memFlagDeleted:
+		case PCSXRMemFlagDeleted:
 			return MemLabelDeleted;
 			break;
 	}
@@ -126,22 +126,22 @@ static NSString *MemLabelMultiSave;
 {
 	if ((blockFlags & 0xF0) == 0xA0) {
 		if ((blockFlags & 0xF) >= 1 && (blockFlags & 0xF) <= 3)
-			return memFlagDeleted;
+			return PCSXRMemFlagDeleted;
 		else
-			return memFlagFree;
+			return PCSXRMemFlagFree;
 	} else if ((blockFlags & 0xF0) == 0x50) {
 		if ((blockFlags & 0xF) == 0x1)
-			return memFlagUsed;
+			return PCSXRMemFlagUsed;
 		else if ((blockFlags & 0xF) == 0x2)
-			return memFlagLink;
+			return PCSXRMemFlagLink;
 		else if ((blockFlags & 0xF) == 0x3)
-			return memFlagEndLink;
+			return PCSXRMemFlagEndLink;
 	} else
-		return memFlagFree;
+		return PCSXRMemFlagFree;
 	
 	//Xcode complains unless we do this...
 	NSLog(@"Unknown flag %x", blockFlags);
-	return memFlagFree;
+	return PCSXRMemFlagFree;
 }
 
 - (instancetype)initWithMcdBlock:(McdBlock *)infoBlock startingIndex:(uint8_t)startIdx size:(uint8_t)memSize
@@ -150,7 +150,7 @@ static NSString *MemLabelMultiSave;
 		self.startingIndex = startIdx;
 		self.blockSize = memSize;
 		self.flag = [PcsxrMemoryObject memFlagsFromBlockFlags:infoBlock->Flags];
-		if (self.flag == memFlagFree) {
+		if (self.flag == PCSXRMemFlagFree) {
 			self.imageArray = @[];
 			self.hasImages = NO;
 			self.title = @"Free block";
@@ -279,23 +279,23 @@ static inline void SetupAttrStr(NSMutableAttributedString *mutStr, NSColor *txtc
 	
 	switch (flag) {
 		default:
-		case memFlagFree:
+		case PCSXRMemFlagFree:
 			return attribMemLabelFree;
 			break;
 			
-		case memFlagEndLink:
+		case PCSXRMemFlagEndLink:
 			return attribMemLabelEndLink;
 			break;
 			
-		case memFlagLink:
+		case PCSXRMemFlagLink:
 			return attribMemLabelLink;
 			break;
 			
-		case memFlagUsed:
+		case PCSXRMemFlagUsed:
 			return attribMemLabelUsed;
 			break;
 			
-		case memFlagDeleted:
+		case PCSXRMemFlagDeleted:
 			return attribMemLabelDeleted;
 			break;
 	}
@@ -303,7 +303,7 @@ static inline void SetupAttrStr(NSMutableAttributedString *mutStr, NSColor *txtc
 
 - (BOOL)showCount
 {
-	if (flag == memFlagFree) {
+	if (flag == PCSXRMemFlagFree) {
 		//Always show the size of the free blocks
 		return YES;
 	} else {
