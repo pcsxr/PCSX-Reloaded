@@ -1742,8 +1742,7 @@ static void buopen(int mcd, u8 *ptr, u8 *cfg)
  */
 
 void psxBios_open() { // 0x32
-	int i;
-	char *ptr;
+
 
 #ifdef PSXBIOS_LOG
 	PSXBIOS_LOG("psxBios_%s: %s,%x\n", biosB0n[0x32], Ra0, a1);
@@ -1918,6 +1917,8 @@ int nfile;
 		ptr = Mcd##mcd##Data + 128 * (nfile + 1); \
 		nfile++; \
 		if ((*ptr & 0xF0) != 0x50) continue; \
+                /* Bug link files show up as free block. */ \
+                if (!ptr[0xa]) continue; \
 		ptr+= 0xa; \
 		if (pfile[0] == 0) { \
 			strncpy(dir->name, ptr, sizeof(dir->name)); \
@@ -1925,16 +1926,14 @@ int nfile;
 		} else for (i=0; i<20; i++) { \
 			if (pfile[i] == ptr[i]) { \
                                 dir->name[i] = ptr[i]; continue; } \
-                        if (ptr[i] == 0) break;\
 			if (pfile[i] == '?') { \
 				dir->name[i] = ptr[i]; continue; } \
 			if (pfile[i] == '*') { \
 				strcpy(dir->name+i, ptr+i); break; } \
-                         if (ptr[i] == 0) break; \
 			match = 0; break; \
 		} \
 		SysPrintf("%d : %s = %s + %s (match=%d)\n", nfile, dir->name, pfile, ptr, match); \
-		if (match == 0) { ptr -= 0xa; continue; } \
+		if (match == 0) { continue; } \
 		dir->size = 8192; \
 		v0 = _dir; \
 		break; \
