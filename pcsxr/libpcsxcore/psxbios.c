@@ -1959,11 +1959,12 @@ void psxBios_firstfile() { // 42
 	strcpy(ffile, Ra0);
 	pfile = ffile+5;
 	nfile = 0;
-        // firstfile() calls _card_read() internally, so deliver it's event
-        DeliverEvent(0x11, 0x2);
+
 	if (!strncmp(Ra0, "bu00", 4)) {
+		DeliverEvent(0x11, 0x2);
 		bufile(1);
 	} else if (!strncmp(Ra0, "bu10", 4)) {
+		DeliverEvent(0x11, 0x2);
 		bufile(2);
 	}
 
