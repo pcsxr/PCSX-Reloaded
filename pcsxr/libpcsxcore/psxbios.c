@@ -655,7 +655,7 @@ void psxBios_memset() { // 0x2b
 		while((s32)a2 > 0)
 		{
 			a2--;
-			psxMu8ref(a0) = a1;
+			*PSXM(a0) = a1;
 			a0++;
 		}
 	}
