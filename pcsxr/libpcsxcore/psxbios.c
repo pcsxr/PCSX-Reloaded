@@ -1791,11 +1791,11 @@ void psxBios_lseek() { // 0x33
 	SysPrintf("read %d: %x,%x (%s)\n", FDesc[1 + mcd].mcfile, FDesc[1 + mcd].offset, a2, Mcd##mcd##Data + 128 * FDesc[1 + mcd].mcfile + 0xa); \
 	ptr = Mcd##mcd##Data + 8192 * FDesc[1 + mcd].mcfile + FDesc[1 + mcd].offset; \
 	memcpy(Ra1, ptr, a2); \
-        DeliverEvent(0x11, 0x2); /* 0xf0000011, 0x0004 */ \
-	DeliverEvent(0x81, 0x2); /* 0xf4000001, 0x0004 */ \
 	if (FDesc[1 + mcd].mode & 0x8000) v0 = 0; \
 	else v0 = a2; \
 	FDesc[1 + mcd].offset += v0; \
+        DeliverEvent(0x11, 0x2); /* 0xf0000011, 0x0004 */ \
+	DeliverEvent(0x81, 0x2); /* 0xf4000001, 0x0004 */ \
 }
 
 /*
@@ -1824,12 +1824,12 @@ void psxBios_read() { // 0x34
 	SysPrintf("write %d: %x,%x\n", FDesc[1 + mcd].mcfile, FDesc[1 + mcd].offset, a2); \
 	ptr = Mcd##mcd##Data + offset; \
 	memcpy(ptr, Ra1, a2); \
-        DeliverEvent(0x11, 0x2); /* 0xf0000011, 0x0004 */ \
-	DeliverEvent(0x81, 0x2); /* 0xf4000001, 0x0004 */ \
 	FDesc[1 + mcd].offset += a2; \
 	SaveMcd(Config.Mcd##mcd, Mcd##mcd##Data, offset, a2); \
 	if (FDesc[1 + mcd].mode & 0x8000) v0 = 0; \
 	else v0 = a2; \
+        DeliverEvent(0x11, 0x2); /* 0xf0000011, 0x0004 */ \
+	DeliverEvent(0x81, 0x2); /* 0xf4000001, 0x0004 */ \
 }
 
 /*
