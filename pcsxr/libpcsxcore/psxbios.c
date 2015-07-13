@@ -1273,16 +1273,34 @@ void psxBios_SetMem() { // 9f
 }
 
 void psxBios__card_info() { // ab
-	// COTS password option
-	boolean nocard = (Config.NoMemcard || ((strlen(Config.Mcd1) <=0) && (strlen(Config.Mcd2) <=0)));
+	u8 ret;
 #ifdef PSXBIOS_LOG
-	PSXBIOS_LOG("psxBios_%s: %x\n", biosA0n[0xab], a0);
+	PSXBIOS_LOG("psxBios_%s: 0x%x\n", biosA0n[0xab], a0);
 #endif
 
 	card_active_chan = a0;
 
+	switch (card_active_chan) {
+	case 0x0:
+		ret = Config.Mcd1[0] ? 0x2 : 0x8;
+		break;
+	case 0x10:
+		ret = Config.Mcd2[0] ? 0x2 : 0x8;
+		break;
+	default:
+#ifdef PSXBIOS_LOG
+		PSXBIOS_LOG("psxBios_%s: UNKNOWN PORT 0x%x\n", biosA0n[0xab], card_active_chan);
+#endif
+		ret = 0x11;
+		break;
+	}
+
+	// COTS password option
+	if (Config.NoMemcard)
+		ret = 0x8;
+
 //	DeliverEvent(0x11, 0x2); // 0xf0000011, 0x0004
-	DeliverEvent(0x81, nocard ? 0x8 : 0x2); // 0xf4000001, 0x0004
+	DeliverEvent(0x81, ret); // 0xf4000001, 0x0004
 
 	v0 = 1; pc0 = ra;
 }
@@ -1794,7 +1812,7 @@ void psxBios_lseek() { // 0x33
 	if (FDesc[1 + mcd].mode & 0x8000) v0 = 0; \
 	else v0 = a2; \
 	FDesc[1 + mcd].offset += v0; \
-        DeliverEvent(0x11, 0x2); /* 0xf0000011, 0x0004 */ \
+		DeliverEvent(0x11, 0x2); /* 0xf0000011, 0x0004 */ \
 	DeliverEvent(0x81, 0x2); /* 0xf4000001, 0x0004 */ \
 }
 
@@ -1815,7 +1833,7 @@ void psxBios_read() { // 0x34
 		case 2: buread(1); break;
 		case 3: buread(2); break;
 	}
-  		
+		
 	pc0 = ra;
 }
 
@@ -1828,7 +1846,7 @@ void psxBios_read() { // 0x34
 	SaveMcd(Config.Mcd##mcd, Mcd##mcd##Data, offset, a2); \
 	if (FDesc[1 + mcd].mode & 0x8000) v0 = 0; \
 	else v0 = a2; \
-        DeliverEvent(0x11, 0x2); /* 0xf0000011, 0x0004 */ \
+		DeliverEvent(0x11, 0x2); /* 0xf0000011, 0x0004 */ \
 	DeliverEvent(0x81, 0x2); /* 0xf4000001, 0x0004 */ \
 }
 
@@ -1879,21 +1897,21 @@ char psxstrbuf[PSXSTRBUFMAX+1];
 unsigned short psxstrbuf_count = 0;
 
 void psxBios_putchar() { // 3d
-    char logchar = ( a0 == 0xa ? '>' : (char)a0 );
-    if (psxstrbuf_count < PSXSTRBUFMAX) psxstrbuf[psxstrbuf_count++] = logchar;
+	char logchar = ( a0 == 0xa ? '>' : (char)a0 );
+	if (psxstrbuf_count < PSXSTRBUFMAX) psxstrbuf[psxstrbuf_count++] = logchar;
 
 #ifdef PSXBIOS_LOG
 	PSXBIOS_LOG("psxBios_%s: %x (%c)\n", biosB0n[0x3d], a0, logchar);
 #else
 	SysPrintf("%c", (char)a0);
 #endif
-    if ((a0 == 0xa && psxstrbuf_count >= 2) || psxstrbuf_count >= PSXSTRBUFMAX) {
-        psxstrbuf[psxstrbuf_count++] = '\0';
+	if ((a0 == 0xa && psxstrbuf_count >= 2) || psxstrbuf_count >= PSXSTRBUFMAX) {
+		psxstrbuf[psxstrbuf_count++] = '\0';
 #ifdef PSXBIOS_LOG
-        PSXBIOS_LOG("psxBios_%s: string_[%d]_cr: %s\n", biosB0n[0x3d], psxstrbuf_count, psxstrbuf);
+		PSXBIOS_LOG("psxBios_%s: string_[%d]_cr: %s\n", biosB0n[0x3d], psxstrbuf_count, psxstrbuf);
 #endif
-        psxstrbuf_count = 0;
-    }
+		psxstrbuf_count = 0;
+	}
 
 	pc0 = ra;
 }
@@ -1917,15 +1935,15 @@ int nfile;
 		ptr = Mcd##mcd##Data + 128 * (nfile + 1); \
 		nfile++; \
 		if ((*ptr & 0xF0) != 0x50) continue; \
-                /* Bug link files show up as free block. */ \
-                if (!ptr[0xa]) continue; \
+				/* Bug link files show up as free block. */ \
+				if (!ptr[0xa]) continue; \
 		ptr+= 0xa; \
 		if (pfile[0] == 0) { \
 			strncpy(dir->name, ptr, sizeof(dir->name)); \
 			dir->name[sizeof(dir->name)] = '\0'; \
 		} else for (i=0; i<20; i++) { \
 			if (pfile[i] == ptr[i]) { \
-                                dir->name[i] = ptr[i]; continue; } \
+								dir->name[i] = ptr[i]; continue; } \
 			if (pfile[i] == '?') { \
 				dir->name[i] = ptr[i]; continue; } \
 			if (pfile[i] == '*') { \
