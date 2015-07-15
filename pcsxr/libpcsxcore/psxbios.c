@@ -165,12 +165,21 @@ char *biosC0n[256] = {
 #define ra (psxRegs.GPR.n.ra)
 #define pc0 (psxRegs.pc)
 
+#ifdef __NO_ASSERTS__
 #define Ra0 ((char *)PSXM(a0))
 #define Ra1 ((char *)PSXM(a1))
 #define Ra2 ((char *)PSXM(a2))
 #define Ra3 ((char *)PSXM(a3))
 #define Rv0 ((char *)PSXM(v0))
 #define Rsp ((char *)PSXM(sp))
+#else
+#define Ra0 (assert(PSXM(a0) != NULL), (char *)PSXM(a0))
+#define Ra1 (assert(PSXM(a1) != NULL), (char *)PSXM(a1))
+#define Ra2 (assert(PSXM(a2) != NULL), (char *)PSXM(a2))
+#define Ra3 (assert(PSXM(a3) != NULL), (char *)PSXM(a3))
+#define Rv0 (assert(PSXM(v0) != NULL), (char *)PSXM(v0))
+#define Rsp (assert(PSXM(sp) != NULL), (char *)PSXM(sp))
+#endif
 
 typedef struct {
 	u32 desc;
@@ -964,7 +973,7 @@ void psxBios_printf() { // 0x3f
 	char *ptmp = tmp;
 	int n=1, i=0, j;
 
-	memcpy(save, (char*)PSXM(sp), 4 * 4);
+	memcpy(save, Rsp, 4 * 4);
 	psxMu32ref(sp) = SWAP32((u32)a0);
 	psxMu32ref(sp + 4) = SWAP32((u32)a1);
 	psxMu32ref(sp + 8) = SWAP32((u32)a2);
@@ -1018,7 +1027,7 @@ _start:
 	}
 	*ptmp = 0;
 
-	memcpy((char*)PSXM(sp), save, 4 * 4);
+	memcpy(Rsp, save, 4 * 4);
 
 #ifdef PSXBIOS_LOG
 	PSXBIOS_LOG("psxBios_%s: %s\n", biosA0n[0x3f], tmp);
@@ -1273,7 +1282,7 @@ void psxBios_SetMem() { // 9f
 }
 
 void psxBios__card_info() { // ab
-	u8 ret;
+	u32 ret;
 #ifdef PSXBIOS_LOG
 	PSXBIOS_LOG("psxBios_%s: 0x%x\n", biosA0n[0xab], a0);
 #endif
@@ -1281,10 +1290,10 @@ void psxBios__card_info() { // ab
 	card_active_chan = a0;
 
 	switch (card_active_chan) {
-	case 0x0:
+	case 0x00: case 0x01: case 0x02: case 0x03:
 		ret = Config.Mcd1[0] ? 0x2 : 0x8;
 		break;
-	case 0x10:
+	case 0x10: case 0x11: case 0x12: case 0x13:
 		ret = Config.Mcd2[0] ? 0x2 : 0x8;
 		break;
 	default:
@@ -2128,21 +2137,21 @@ void psxBios_StopCARD() { // 4c
 }
 
 void psxBios__card_write() { // 0x4e
-	int port;
+	int const port = a0 >> 4;
+	u32 const sect = a1 % (MCD_SIZE/8); // roll on range 0...3FFF
 
 #ifdef PSXBIOS_LOG
-	PSXBIOS_LOG("psxBios_%s: %x,%x,%x\n", biosB0n[0x4e], a0, a1, a2);
+	PSXBIOS_LOG("psxBios_%s, PORT=%i, SECT=%u(%u), DEST=%p\n", biosB0n[0x4e], port, sect, a1, a2);
 #endif
 
 	card_active_chan = a0;
-	port = a0 >> 4;
 
 	if (port == 0) {
-		memcpy(Mcd1Data + a1 * 128, Ra2, 128);
-		SaveMcd(Config.Mcd1, Mcd1Data, a1 * 128, 128);
+		memcpy(Mcd1Data + (sect * MCD_SECT_SIZE), Ra2, MCD_SECT_SIZE);
+		SaveMcd(Config.Mcd1, Mcd1Data, sect * MCD_SECT_SIZE, MCD_SECT_SIZE);
 	} else {
-		memcpy(Mcd2Data + a1 * 128, Ra2, 128);
-		SaveMcd(Config.Mcd2, Mcd2Data, a1 * 128, 128);
+		memcpy(Mcd2Data + (sect * MCD_SECT_SIZE), Ra2, MCD_SECT_SIZE);
+		SaveMcd(Config.Mcd2, Mcd2Data, sect * MCD_SECT_SIZE, MCD_SECT_SIZE);
 	}
 
 	DeliverEvent(0x11, 0x2); // 0xf0000011, 0x0004
@@ -2152,19 +2161,19 @@ void psxBios__card_write() { // 0x4e
 }
 
 void psxBios__card_read() { // 0x4f
-	int port;
+	int const port = a0 >> 4;
+	u32 const sect = a1 % (MCD_SIZE/8); // roll on range 0...3FFF
 
 #ifdef PSXBIOS_LOG
-	PSXBIOS_LOG("psxBios_%s\n", biosB0n[0x4f]);
+	PSXBIOS_LOG("psxBios_%s, PORT=%i, SECT=%u(%u), DEST=%p\n", biosB0n[0x4f], port, sect, a1, a2);
 #endif
 
 	card_active_chan = a0;
-	port = a0 >> 4;
 
 	if (port == 0) {
-		memcpy(Ra2, Mcd1Data + a1 * 128, 128);
+		memcpy(Ra2, Mcd1Data + (sect * MCD_SECT_SIZE), MCD_SECT_SIZE);
 	} else {
-		memcpy(Ra2, Mcd2Data + a1 * 128, 128);
+		memcpy(Ra2, Mcd2Data + (sect * MCD_SECT_SIZE), MCD_SECT_SIZE);
 	}
 
 	DeliverEvent(0x11, 0x2); // 0xf0000011, 0x0004
