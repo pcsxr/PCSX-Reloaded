@@ -46,7 +46,6 @@ struct PSXRGBColor {
 			int g = ((c & 0x03e0) >> 5) << 3;
 			int b = ((c & 0x7c00) >> 10) << 3;
 			struct PSXRGBColor *colorItem = &cocoaImageData[v];
-			//[imageRep setColor:[NSColor colorWithCalibratedRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0] atX:x y:y];
 			colorItem->r = r;
 			colorItem->g = g;
 			colorItem->b = b;
