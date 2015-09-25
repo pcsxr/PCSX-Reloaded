@@ -43,6 +43,7 @@ unsigned long gpuDisp;
 
 int StatesC = 0;
 unsigned char loadedOld = FALSE;
+int speed = 100;
 extern int UseGui;
 
 void gpuShowPic() {
@@ -250,6 +251,22 @@ void PADhandleKey(int key) {
 			if ((((now - tslastpressed) * 1000) / CLOCKS_PER_SEC) <= 130) break;
 			tslastpressed = now;
 			RewindState();
+			break;
+		case XK_bracketleft:
+			if (speed == Config.AltSpeed1) {
+				speed = 100;
+			} else {
+				speed = Config.AltSpeed1;
+			}
+			GPU_setSpeed(speed / 100.0);
+			break;
+		case XK_bracketright:
+			if (speed == Config.AltSpeed2) {
+				speed = 100;
+			} else {
+				speed = Config.AltSpeed2;
+			}
+			GPU_setSpeed(speed / 100.0);
 			break;
 		case XK_Escape:
 			// TODO
