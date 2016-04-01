@@ -18,25 +18,26 @@ typedef NS_ENUM(char, PCSXRMemFlag) {
 };
 
 @interface PcsxrMemoryObject : NSObject
-
-+ (NSArray *)imagesFromMcd:(McdBlock *)block;
-+ (NSString*)memoryLabelFromFlag:(PCSXRMemFlag)flagNameIndex;
-+ (NSImage *)blankImage;
-+ (PCSXRMemFlag)memFlagsFromBlockFlags:(unsigned char)blockFlags;
-
-- (instancetype)initWithMcdBlock:(McdBlock *)infoBlockc startingIndex:(uint8_t)startIdx size:(uint8_t)memSize NS_DESIGNATED_INITIALIZER;
-
-- (NSImage*)memoryImageAtIndex:(NSInteger)idx;
-
 @property (readonly, copy) NSString *title;
 @property (readonly, copy) NSString *name;
 @property (readonly, copy) NSString *identifier;
 @property (readonly, strong) NSArray *imageArray;
 @property (readonly, strong, nonatomic) NSImage *image;
 @property (readonly) PCSXRMemFlag flag;
-@property (readonly) uint8_t startingIndex;
+@property (readonly, strong) NSIndexSet *indexes;
 @property (readonly) uint8_t blockSize;
 @property (readonly) BOOL hasImages;
+
++ (NSArray<NSImage*> *)imagesFromMcd:(McdBlock *)block;
++ (NSString*)memoryLabelFromFlag:(PCSXRMemFlag)flagNameIndex;
++ (NSImage *)blankImage;
++ (PCSXRMemFlag)memFlagsFromBlockFlags:(unsigned char)blockFlags;
+
+- (instancetype)initWithMcdBlock:(McdBlock *)infoBlockc startingIndex:(uint8_t)startIdx size:(uint8_t)memSize DEPRECATED_ATTRIBUTE;
+- (instancetype)initWithMcdBlock:(McdBlock *)infoBlockc blockIndexes:(NSIndexSet*)blockIdx NS_DESIGNATED_INITIALIZER;
+
+- (NSImage*)memoryImageAtIndex:(NSInteger)idx;
+
 
 @property (readonly, copy) NSImage *firstImage;
 @property (readonly, nonatomic) NSUInteger iconCount;

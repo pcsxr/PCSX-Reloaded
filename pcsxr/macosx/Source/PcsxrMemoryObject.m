@@ -13,13 +13,13 @@
 @property (readwrite, copy) NSString *title;
 @property (readwrite, copy) NSString *name;
 @property (readwrite, copy) NSString *identifier;
-@property (readwrite) uint8_t startingIndex;
-@property (readwrite) uint8_t blockSize;
 
 @property (readwrite, strong) NSArray *imageArray;
 @property (readwrite) PCSXRMemFlag flag;
 @property (readwrite, nonatomic, strong) NSImage *image;
 @property (readwrite) BOOL hasImages;
+@property (readwrite, strong) NSIndexSet *indexes;
+
 @end
 
 #pragma pack(push,2)
@@ -151,9 +151,13 @@ static NSString *MemLabelMultiSave;
 
 - (instancetype)initWithMcdBlock:(McdBlock *)infoBlock startingIndex:(uint8_t)startIdx size:(uint8_t)memSize
 {
+	return [self initWithMcdBlock:infoBlock blockIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(startIdx, memSize)]];
+}
+
+- (instancetype)initWithMcdBlock:(McdBlock *)infoBlock blockIndexes:(NSIndexSet*)blockIdx
+{
 	if (self = [super init]) {
-		self.startingIndex = startIdx;
-		self.blockSize = memSize;
+		self.indexes = blockIdx;
 		self.flag = [PcsxrMemoryObject memFlagsFromBlockFlags:infoBlock->Flags];
 		if (self.flag == PCSXRMemFlagFree) {
 			self.imageArray = @[];
@@ -182,9 +186,12 @@ static NSString *MemLabelMultiSave;
 @synthesize identifier;
 @synthesize imageArray = memImages;
 @synthesize flag;
-@synthesize blockSize;
-@synthesize startingIndex;
 @synthesize image = _memImage;
+
+- (uint8_t)blockSize
+{
+	return _indexes.count;
+}
 
 #pragma mark Non-synthesized Properties
 - (NSUInteger)iconCount
@@ -312,7 +319,7 @@ static inline void SetupAttrStr(NSMutableAttributedString *mutStr, NSColor *txtc
 		//Always show the size of the free blocks
 		return YES;
 	} else {
-		return blockSize != 1;
+		return [self blockSize] != 1;
 	}
 }
 
@@ -325,7 +332,7 @@ static inline void SetupAttrStr(NSMutableAttributedString *mutStr, NSColor *txtc
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"%@: Name: %@ ID: %@, type: %@ start: %i size: %i", title, name, identifier, self.flagName, startingIndex, blockSize];
+	return [NSString stringWithFormat:@"%@: Name: %@ ID: %@, type: %@ blocks: %@", title, name, identifier, self.flagName, _indexes];
 }
 
 @end
