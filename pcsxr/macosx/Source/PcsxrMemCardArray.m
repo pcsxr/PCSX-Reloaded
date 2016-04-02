@@ -21,7 +21,7 @@
 #define GETLINKFORBLOCK(Data, block) (*((Data)+(((block)*128)+0x08)))
 
 
-int GetMcdBlockCount(int mcd, u8 startblock, u8* blocks) {
+static int GetMcdBlockCount(int mcd, u8 startblock, u8* blocks) {
 	NSCAssert1((mcd == 1) || (mcd == 2), @"Mcd block %i is invalid", mcd);
 	int i=0;
 	u8 *data = NULL, *dataT, curblock=startblock;
