@@ -615,14 +615,14 @@ void psxBios_tolower() { // 0x26
 
 void psxBios_bcopy() { // 0x27
 	char *p1 = (char *)Ra1, *p2 = (char *)Ra0;
-	while (a2-- > 0) *p1++ = *p2++;
+        while ((s32)a2-- > 0) *p1++ = *p2++;
 
 	pc0 = ra;
 }
 
 void psxBios_bzero() { // 0x28
 	char *p = (char *)Ra0;
-	while (a1-- > 0) *p++ = '\0';
+	while ((s32)a1-- > 0) *p++ = '\0';
 
 	pc0 = ra;
 }
@@ -632,7 +632,7 @@ void psxBios_bcmp() { // 0x29
 
 	if (a0 == 0 || a1 == 0) { v0 = 0; pc0 = ra; return; }
 
-	while (a2-- > 0) {
+	while ((s32)a2-- > 0) {
 		if (*p1++ != *p2++) {
 			v0 = *p1 - *p2; // BUG: compare the NEXT byte
 			pc0 = ra;
@@ -645,7 +645,7 @@ void psxBios_bcmp() { // 0x29
 
 void psxBios_memcpy() { // 0x2a
 	char *p1 = (char *)Ra0, *p2 = (char *)Ra1;
-	while (a2-- > 0) *p1++ = *p2++;
+	while ((s32)a2-- > 0) *p1++ = *p2++;
 
 	v0 = a0; pc0 = ra;
 }
@@ -679,9 +679,9 @@ void psxBios_memmove() { // 0x2c
 		a2++; // BUG: copy one more byte here
 		p1 += a2;
 		p2 += a2;
-		while (a2-- > 0) *--p1 = *--p2;
+		while ((s32)a2-- > 0) *--p1 = *--p2;
 	} else {
-		while (a2-- > 0) *p1++ = *p2++;
+		while ((s32)a2-- > 0) *p1++ = *p2++;
 	}
 
 	v0 = a0; pc0 = ra;
@@ -694,7 +694,7 @@ void psxBios_memcmp() { // 0x2d
 void psxBios_memchr() { // 0x2e
 	char *p = (char *)Ra0;
 
-	while (a2-- > 0) {
+	while ((s32)a2-- > 0) {
 		if (*p++ != (s8)a1) continue;
 		v0 = a0 + (p - (char *)Ra0 - 1);
 		pc0 = ra;
