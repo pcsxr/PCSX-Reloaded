@@ -336,7 +336,7 @@ static int do_decode_cdda(struct trackinfo* tri, u32 tracknumber) {
 // this function tries to get the .toc file of the given .bin
 // the necessary data is put into the ti (trackinformation)-array
 static int parsetoc(const char *isofile) {
-	char			tocname[MAXPATHLEN];
+	char			tocname[MAXPATHLEN], filename[MAXPATHLEN], *ptr;
 	FILE			*fi;
 	char			linebuf[256], tmp[256], name[256];
 	char			*token;
@@ -374,6 +374,14 @@ static int parsetoc(const char *isofile) {
 			}
 		}
 	}
+
+    strcpy(filename, tocname);
+    if ((ptr = strrchr(filename, '/')) == NULL)
+        ptr = strrchr(filename, '\\');
+    if (ptr == NULL)
+        *ptr = 0;
+    else
+        *(ptr + 1) = 0;
 
 	memset(&ti, 0, sizeof(ti));
 	cddaBigEndian = TRUE; // cdrdao uses big-endian for CD Audio
@@ -425,6 +433,8 @@ static int parsetoc(const char *isofile) {
 			else {
 				sscanf(linebuf, "DATAFILE \"%[^\"]\" %8s", name, time);
 				tok2msf((char *)&time, (char *)&ti[numtracks].length);
+				strcat(filename, name);
+				ti[numtracks].handle = fopen(filename, "rb");
 			}
 		}
 		else if (!strcmp(token, "FILE")) {
@@ -464,6 +474,8 @@ static int parsetoc(const char *isofile) {
 			}
 		}
 	}
+	if (numtracks > 0)
+	    cdHandle = fopen(filename, "rb");
 
 	fclose(fi);
 
