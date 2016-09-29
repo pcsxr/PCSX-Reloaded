@@ -352,6 +352,8 @@
 #define ID_FILE_STATES_SAVE_SLOT8       40065
 #define ID_FILE_STATES_SAVE_SLOT9       40066
 #define ID_FILE_STATES_SAVE_OTHER       40067
+#define ID_FILE_RUN_EXE_NOGUI           40068
+
 #define ID_LANGS                        50000
 
 // Next default values for new objects

@@ -134,7 +134,9 @@ void strcatz(char *dst, char *src) {
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 	char *arg = NULL;
 	char cdfile[MAXPATHLEN] = "", buf[4096];
+	char exfile[MAXPATHLEN] = "";
 	int loadstatenum = -1;
+	unsigned char is_exfile = 0;
 
 	strcpy(cfgfile, "Software\\Pcsxr");
 
@@ -195,6 +197,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			UseGui = FALSE;
 		} else if (strcmp(arg, "-runcd") == 0) {
 			cdfile[0] = '\0';
+			exfile[0] = '\0';
 		} else if (strcmp(arg, "-cdfile") == 0) {
 			arg = strtok(NULL, " ");
 			if (arg != NULL) {
@@ -206,6 +209,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 					strcpy(cdfile, arg);
 				}
 				UseGui = FALSE;
+			}
+		} else if (strcmp(arg, "-exfile") == 0) {
+			arg = strtok(NULL, " ");
+			if (arg != NULL) {
+				if (arg[0] == '"') {
+					strncpy(buf, lpCmdLine + (arg - buf), 4096);
+					arg = strtok(buf, "\"");
+					if (arg != NULL) strcpy(exfile, arg);
+				} else {
+					strcpy(exfile, arg);
+				}
+				UseGui = FALSE;
+				is_exfile = 1;
 			}
 		} else if (strcmp(arg, "-psxout") == 0) {
 			Config.PsxOut = TRUE;
@@ -220,6 +236,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				"\t-slowboot\t\tEnable BIOS logo\n"
 				"\t-runcd\t\tRuns CD-ROM (requires -nogui)\n"
 				"\t-cdfile FILE\tRuns a CD image file (requires -nogui)\n"
+				"\t-exfile FILE\tRuns a PS-EXE file (requires -nogui)\n"
 				"\t-help\t\tDisplay this message"),
 				"PCSXR", 0);
 
@@ -232,8 +249,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	CreateMainWindow(nCmdShow);
 
 	if (!UseGui) {
-		SetIsoFile(cdfile);
-		PostMessage(gApp.hWnd, WM_COMMAND, ID_FILE_RUN_NOGUI, 0);
+		if( is_exfile ) {
+			SetExeFile(exfile);
+			PostMessage(gApp.hWnd, WM_COMMAND, ID_FILE_RUN_EXE_NOGUI, 0);
+		} else {
+			SetIsoFile(cdfile);
+			PostMessage(gApp.hWnd, WM_COMMAND, ID_FILE_RUN_NOGUI, 0);
+		}
 	}
 
 	RunGui();
@@ -613,6 +635,29 @@ LRESULT WINAPI MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 					}
 					if(Config.HideCursor)
 						ShowCursor(FALSE);
+					Running = 1;
+					psxCpu->Execute();
+					return TRUE;
+
+				case ID_FILE_RUN_EXE_NOGUI:
+
+					SetIsoFile(NULL);
+					SetMenu(hWnd, NULL);
+					LoadPlugins();
+					if (OpenPlugins(hWnd) == -1) {
+						ClosePlugins();
+						RestoreWindow();
+						return TRUE;
+					}
+					CheckCdrom();
+
+					// Auto-detect: region first, then rcnt reset
+					SysReset();
+
+					if(Config.HideCursor)
+						ShowCursor(FALSE);
+
+					Load( GetExeFile() );
 					Running = 1;
 					psxCpu->Execute();
 					return TRUE;
