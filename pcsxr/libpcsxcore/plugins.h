@@ -416,7 +416,9 @@ extern SIO1registerCallback   SIO1_registerCallback;
 void CALLBACK clearDynarec(void);
 
 void SetIsoFile(const char *filename);
+void SetExeFile(const char *filename);
 const char *GetIsoFile(void);
+const char *GetExeFile(void);
 boolean UsingIso(void);
 void SetCdOpenCaseTime(s64 time);
 

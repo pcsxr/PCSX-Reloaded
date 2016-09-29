@@ -25,6 +25,7 @@
 #include "cdriso.h"
 
 static char IsoFile[MAXPATHLEN] = "";
+static char ExeFile[MAXPATHLEN] = "";
 static s64 cdOpenCaseTime = 0;
 
 GPUupdateLace         GPU_updateLace;
@@ -836,8 +837,20 @@ void SetIsoFile(const char *filename) {
 	strncpy(IsoFile, filename, MAXPATHLEN);
 }
 
+void SetExeFile(const char *filename) {
+	if (filename == NULL) {
+		ExeFile[0] = '\0';
+		return;
+	}
+	strncpy(ExeFile, filename, MAXPATHLEN);
+}
+
 const char *GetIsoFile(void) {
 	return IsoFile;
+}
+
+const char *GetExeFile(void) {
+	return ExeFile;
 }
 
 boolean UsingIso(void) {
