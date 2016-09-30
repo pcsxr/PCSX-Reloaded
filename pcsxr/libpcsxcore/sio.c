@@ -884,6 +884,8 @@ void sioInterrupt() {
 void LoadMcd(int mcd, char *str) {
 	FILE *f;
 	char *data = NULL;
+	char filepath[ MAXPATHLEN ] = { '\0' };
+	const char *apppath = GetAppPath();
 
 	if (mcd == 1) data = Mcd1Data;
 	if (mcd == 2) data = Mcd2Data;
@@ -892,15 +894,20 @@ void LoadMcd(int mcd, char *str) {
 		SysPrintf(_("No memory card value was specified - card %i is not plugged.\n"), mcd);
 		return;
 	}
-	f = fopen(str, "rb");
+
+	//Getting full application path.
+	memmove( filepath, apppath, strlen(apppath) );
+	strcat( filepath, str );
+	
+	f = fopen( filepath, "rb");
 	if (f == NULL) {
-		SysPrintf(_("The memory card %s doesn't exist - creating it\n"), str);
-		CreateMcd(str);
-		f = fopen(str, "rb");
+		SysPrintf(_("The memory card %s doesn't exist - creating it\n"), filepath);
+		CreateMcd(filepath);
+		f = fopen(filepath, "rb");
 		if (f != NULL) {
 			struct stat buf;
 
-			if (stat(str, &buf) != -1) {
+			if (stat(filepath, &buf) != -1) {
 				if (buf.st_size == MCD_SIZE + 64)
 					fseek(f, 64, SEEK_SET);
 				else if(buf.st_size == MCD_SIZE + 3904)
@@ -910,12 +917,12 @@ void LoadMcd(int mcd, char *str) {
 			fclose(f);
 		}
 		else
-			SysMessage(_("Memory card %s failed to load!\n"), str);
+			SysMessage(_("Memory card %s failed to load!\n"), filepath);
 	}
 	else {
 		struct stat buf;
-		SysPrintf(_("Loading memory card %s\n"), str);
-		if (stat(str, &buf) != -1) {
+		SysPrintf(_("Loading memory card %s\n"), filepath);
+		if (stat(filepath, &buf) != -1) {
 			if (buf.st_size == MCD_SIZE + 64)
 				fseek(f, 64, SEEK_SET);
 			else if(buf.st_size == MCD_SIZE + 3904)

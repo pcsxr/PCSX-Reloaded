@@ -417,8 +417,10 @@ void CALLBACK clearDynarec(void);
 
 void SetIsoFile(const char *filename);
 void SetExeFile(const char *filename);
+void SetAppPath(const char *filename);
 const char *GetIsoFile(void);
 const char *GetExeFile(void);
+const char *GetAppPath(void);
 boolean UsingIso(void);
 void SetCdOpenCaseTime(s64 time);
 

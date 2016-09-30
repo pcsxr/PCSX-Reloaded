@@ -134,9 +134,11 @@ void strcatz(char *dst, char *src) {
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 	char *arg = NULL;
 	char cdfile[MAXPATHLEN] = "", buf[4096];
-	char exfile[MAXPATHLEN] = "";
+	char exfile[MAXPATHLEN] = { '\0' };
+	char appath[MAXPATHLEN] = { '\0' };		//Application base path access for load Memorycard/Bios.
 	int loadstatenum = -1;
 	unsigned char is_exfile = 0;
+	unsigned char is_appath = 0;
 
 	strcpy(cfgfile, "Software\\Pcsxr");
 
@@ -198,6 +200,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		} else if (strcmp(arg, "-runcd") == 0) {
 			cdfile[0] = '\0';
 			exfile[0] = '\0';
+			appath[0] = '\0';
 		} else if (strcmp(arg, "-cdfile") == 0) {
 			arg = strtok(NULL, " ");
 			if (arg != NULL) {
@@ -223,6 +226,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				UseGui = FALSE;
 				is_exfile = 1;
 			}
+		} else if (strcmp(arg, "-appath") == 0) {
+			arg = strtok(NULL, " ");
+			if (arg != NULL) {
+				if (arg[0] == '"') {
+					strncpy(buf, lpCmdLine + (arg - buf), 4096);
+					arg = strtok(buf, "\"");
+					if (arg != NULL) strcpy(appath, arg);
+				} else {
+					strcpy(appath, arg);
+				}
+				UseGui = FALSE;
+				is_appath = 1;
+			}
 		} else if (strcmp(arg, "-psxout") == 0) {
 			Config.PsxOut = TRUE;
 		} else if (strcmp(arg, "-slowboot") == 0) {
@@ -235,12 +251,40 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				"\t-psxout\t\tEnable PSX output\n"
 				"\t-slowboot\t\tEnable BIOS logo\n"
 				"\t-runcd\t\tRuns CD-ROM (requires -nogui)\n"
+				"\t-appath PATH\tLoad memorycard/bios files this path (requires -nogui)\n"
 				"\t-cdfile FILE\tRuns a CD image file (requires -nogui)\n"
 				"\t-exfile FILE\tRuns a PS-EXE file (requires -nogui)\n"
 				"\t-help\t\tDisplay this message"),
 				"PCSXR", 0);
 
 			return 0;
+		}
+	}
+
+	// Use Full Application Path for load memory card and load bios.
+	// It have to execute before SysInit().
+	if (!UseGui) {
+		if( is_appath ) {
+
+			//char fullpath[MAXPATHLEN] = { '\0' };
+			//int len = GetModuleFileName(NULL, fullpath, MAXPATHLEN);
+			//if( len > 0 && len < MAXPATHLEN ) {
+			//	char tmp_drive[ MAXPATHLEN ];
+			//	char tmp_dir[ MAXPATHLEN ];
+			//	char tmp_file[ MAXPATHLEN ];
+			//	char tmp_ext[ MAXPATHLEN ];
+			//	char* pp = NULL;
+			//	_splitpath(fullpath, tmp_drive, tmp_dir, tmp_file, tmp_ext );
+			//	Setappath( strcat( tmp_drive, tmp_dir ) );
+			//}
+
+			int apppath_len = strlen(appath);
+			if( apppath_len > 0 ) {
+				char app_last = appath[ apppath_len - 1 ];
+				if( app_last != '\\' )
+					strcat(appath, "\\");
+			}
+			SetAppPath( appath );
 		}
 	}
 
