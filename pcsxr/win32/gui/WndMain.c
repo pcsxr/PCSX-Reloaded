@@ -136,9 +136,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	char cdfile[MAXPATHLEN] = "", buf[4096];
 	char exfile[MAXPATHLEN] = { '\0' };
 	char appath[MAXPATHLEN] = { '\0' };		//Application base path access for load Memorycard/Bios.
+	char ldfile[MAXPATHLEN] = { '\0' };
 	int loadstatenum = -1;
 	unsigned char is_exfile = 0;
 	unsigned char is_appath = 0;
+	unsigned char is_ldfile = 0;
 
 	strcpy(cfgfile, "Software\\Pcsxr");
 
@@ -201,6 +203,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			cdfile[0] = '\0';
 			exfile[0] = '\0';
 			appath[0] = '\0';
+			ldfile[0] = '\0';
 		} else if (strcmp(arg, "-cdfile") == 0) {
 			arg = strtok(NULL, " ");
 			if (arg != NULL) {
@@ -239,6 +242,19 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				UseGui = FALSE;
 				is_appath = 1;
 			}
+		} else if (strcmp(arg, "-ldfile") == 0) {
+			arg = strtok(NULL, " ");
+			if (arg != NULL) {
+				if (arg[0] == '"') {
+					strncpy(buf, lpCmdLine + (arg - buf), 4096);
+					arg = strtok(buf, "\"");
+					if (arg != NULL) strcpy(ldfile, arg);
+				} else {
+					strcpy(ldfile, arg);
+				}
+				UseGui = FALSE;
+				is_ldfile = 1;
+			}
 		} else if (strcmp(arg, "-psxout") == 0) {
 			Config.PsxOut = TRUE;
 		} else if (strcmp(arg, "-slowboot") == 0) {
@@ -254,6 +270,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				"\t-appath PATH\tLoad memorycard/bios files this path (requires -nogui)\n"
 				"\t-cdfile FILE\tRuns a CD image file (requires -nogui)\n"
 				"\t-exfile FILE\tRuns a PS-EXE file (requires -nogui)\n"
+				"\t-ldfile FILE\tLoads binary file to psx-memory (requires -nogui)\n"
 				"\t-help\t\tDisplay this message"),
 				"PCSXR", 0);
 
@@ -293,6 +310,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	CreateMainWindow(nCmdShow);
 
 	if (!UseGui) {
+
+		if( is_ldfile )
+			SetLdrFile(ldfile);
+
 		if( is_exfile ) {
 			SetExeFile(exfile);
 			PostMessage(gApp.hWnd, WM_COMMAND, ID_FILE_RUN_EXE_NOGUI, 0);
@@ -700,6 +721,8 @@ LRESULT WINAPI MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 					if(Config.HideCursor)
 						ShowCursor(FALSE);
+
+					LoadLdrFile( GetLdrFile() );
 
 					Load( GetExeFile() );
 					Running = 1;

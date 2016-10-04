@@ -52,6 +52,10 @@ struct iso_directory_record {
 	char name			[1];
 };
 
+//local extern
+void trim_key(char *str, char key );
+void split( char* str, char key, char* pout );
+
 void mmssdd( char *b, char *p )
 {
 	int m, s, d;
@@ -515,6 +519,83 @@ int Load(const char *ExePath) {
 	return retval;
 }
 
+static void LoadBin( unsigned long addr, char* filename ) {
+	FILE *f;
+	long len;
+	unsigned long mem = addr & 0x001fffff;
+
+	// Load binery files 
+	f = fopen(filename, "rb");
+	if (f != NULL) {
+		fseek(f,0,SEEK_END);
+		len = ftell(f);
+		fseek(f,0,SEEK_SET);
+		if( len + mem < 0x00200000 ) {
+			if( psxM )
+				fread(psxM + mem, len, 1, f);
+		}
+		fclose(f);
+	}
+}
+
+int LoadLdrFile(const char *LdrPath ) {
+	FILE * tmpFile;
+	int retval = 0;	//-1 is error, 0 is success
+
+	tmpFile = fopen(LdrPath, "rt");
+	if (tmpFile == NULL) {
+		SysPrintf(_("Error opening file: %s.\n"), LdrPath);
+		retval = -1;
+	} else {
+		int index = 0;
+		char sztext[16][256];
+
+		memset( sztext, 0x00, sizeof(sztext) );
+
+		while(index <= 15 && fgets( &sztext[index][0], 254, tmpFile )) {
+
+			char szaddr[256];
+			char szpath[256];
+			char* psrc = &sztext[index][0];
+			char* paddr;
+			char* ppath;
+			int len;
+			unsigned long addr = 0L;
+
+			memset( szaddr, 0x00, sizeof(szaddr));
+			memset( szpath, 0x00, sizeof(szpath));
+
+			len = strlen( psrc );
+			if( len > 0 ) {
+				trim( psrc );
+				trim_key( psrc, '\t' );
+				split( psrc, '\t', szaddr );
+
+				paddr = szaddr;
+				ppath = psrc + strlen(paddr);
+
+				//getting address
+				trim( paddr );
+				trim_key( paddr, '\t' );
+				addr = strtoul(szaddr, NULL, 16);
+				if( addr != 0 ) {
+					//getting bin filepath in ldrfile
+					trim( ppath );
+					trim_key( ppath, '\t' );
+					memmove( szpath, ppath, sizeof(szpath));
+
+					//Load binary to main memory
+					LoadBin( addr, szpath );
+				}
+			}
+
+			index++;
+		}
+	}
+
+	return retval;
+}
+
 // STATES
 #define PCSXR_HEADER_SZ (10)
 #define SZ_GPUPIC (128 * 96 * 3)
@@ -845,11 +926,15 @@ int RecvPcsxInfo() {
 
 // remove the leading and trailing spaces in a string
 void trim(char *str) {
+	trim_key( str, ' ' );
+}
+
+void trim_key(char *str, char key ) {
 	int pos = 0;
 	char *dest = str;
 
 	// skip leading blanks
-	while (str[pos] <= ' ' && str[pos] > 0)
+	while (str[pos] <= key && str[pos] > 0)
 		pos++;
 
 	while (str[pos]) {
@@ -860,8 +945,25 @@ void trim(char *str) {
 	*(dest--) = '\0'; // store the null
 
 	// remove trailing blanks
-	while (dest >= str && *dest <= ' ' && *dest > 0)
+	while (dest >= str && *dest <= key && *dest > 0)
 		*(dest--) = '\0';
+}
+
+// split by the keys codes in strings
+void split( char* str, char key, char* pout )
+{
+	char* psrc = str;
+	char* pdst = pout;
+	int len = strlen(str);
+	int i;
+	for( i = 0; i < len; i++ ) {
+		if( psrc[i] == '\0' || psrc[i] == key ) {
+			*pdst = '\0';
+			break;
+		} else {
+			*pdst++ = psrc[i];
+		}
+	}
 }
 
 // lookup table for crc calculation

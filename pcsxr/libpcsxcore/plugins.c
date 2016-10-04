@@ -27,6 +27,7 @@
 static char IsoFile[MAXPATHLEN] = "";
 static char ExeFile[MAXPATHLEN] = "";
 static char AppPath[MAXPATHLEN] = "";		//Application path(== pcsxr.exe directory)
+static char LdrFile[MAXPATHLEN] = "";		//bin-load file
 static s64 cdOpenCaseTime = 0;
 
 GPUupdateLace         GPU_updateLace;
@@ -855,6 +856,14 @@ void SetAppPath(const char *apppath ) {
 	strncpy(AppPath, apppath, MAXPATHLEN);
 }
 
+void SetLdrFile(const char *ldrfile ) {
+	if (ldrfile == NULL) {
+		LdrFile[0] = '\0';
+		return;
+	}
+	strncpy(LdrFile, ldrfile, MAXPATHLEN);
+}
+
 const char *GetIsoFile(void) {
 	return IsoFile;
 }
@@ -865,6 +874,10 @@ const char *GetExeFile(void) {
 
 const char *GetAppPath(void) {
 	return AppPath;
+}
+
+const char *GetLdrFile(void) {
+	return LdrFile;
 }
 
 boolean UsingIso(void) {
