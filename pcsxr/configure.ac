@@ -44,6 +44,7 @@ doc/Makefile
 libpcsxcore/Makefile
 gui/Makefile
 plugins/bladesio1/Makefile
+plugins/nullsio1/Makefile
 plugins/dfinput/Makefile
 plugins/dfsound/Makefile
 plugins/dfxvideo/Makefile
