@@ -107,14 +107,17 @@ int psxMemInit() {
 
 void psxMemReset() {
 	FILE *f = NULL;
-	char bios[1024];
+	char bios[1024] = { '\0' };
+	char temp[1024] = { '\0' };
 
 	memset(psxM, 0, 0x00200000);
 	memset(psxP, 0, 0x00010000);
 
 	// Load BIOS
 	if (strcmp(Config.Bios, "HLE") != 0) {
-		sprintf(bios, "%s/%s", Config.BiosDir, Config.Bios);
+		sprintf(temp, "%s/%s", Config.BiosDir, Config.Bios);
+
+		strcat( strcat( bios, GetAppPath() ), temp );
 		f = fopen(bios, "rb");
 
 		if (f == NULL) {
