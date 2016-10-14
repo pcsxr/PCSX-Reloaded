@@ -61,7 +61,7 @@ int connectionOpen() {
 
 			serversock = socket(AF_INET, SOCK_STREAM, 0);
 			if(serversock == -1) {
-				fprintf(stderr, "[SIO1] ERROR: server socket()\n");
+				fprintf(stderr, "[SIO1] ERROR: server socket(): %d\n", WSAGetLastError());
 				return -1;
 			}
 			
@@ -74,12 +74,12 @@ int connectionOpen() {
 			address.sin_port		= settings.port;
 
 			if(bind(serversock,(struct sockaddr*)&address,sizeof(address)) == -1) {
-				fprintf(stderr, "[SIO1] ERROR: server bind()\n");
+				fprintf(stderr, "[SIO1] ERROR: server bind(): %d\n", WSAGetLastError());
 				return -1;
 			}
 
 			if(listen(serversock, 1) != 0) {
-				fprintf(stderr, "[SIO1] ERROR: server listen()\n");
+				fprintf(stderr, "[SIO1] ERROR: server listen(): %d\n", WSAGetLastError());
 				return -1;
 			}
 
@@ -99,14 +99,14 @@ int connectionOpen() {
 
 			clientsock = socket(AF_INET, SOCK_STREAM, 0);
 			if(clientsock == -1) {
-				fprintf(stderr, "[SIO1] ERROR: client socket()\n");
+				fprintf(stderr, "[SIO1] ERROR: client socket(): %d\n", WSAGetLastError());
 				return -1;
 			}
 
 			setsockopt(clientsock, IPPROTO_TCP, TCP_NODELAY, (const char*)&one, sizeof(one));
 
 			if(connect(clientsock,(struct sockaddr*)&address,sizeof(address)) != 0) {
-				fprintf(stderr, "[SIO1] ERROR: client connect(%s)\n", settings.ip);
+				fprintf(stderr, "[SIO1] ERROR: client connect(%s): %d\n", settings.ip, WSAGetLastError());
 				return -1;
 			}
 		}
