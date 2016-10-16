@@ -115,9 +115,20 @@ void psxMemReset() {
 
 	// Load BIOS
 	if (strcmp(Config.Bios, "HLE") != 0) {
+
+/*
 		sprintf(temp, "%s/%s", Config.BiosDir, Config.Bios);
 
 		strcat( strcat( bios, GetAppPath() ), temp );
+		f = fopen(bios, "rb");
+		*/
+
+	   //AppPath's priority is high.
+		const char* apppath = GetAppPath();
+		if( strlen(apppath) > 0 )
+			strcat( strcat( strcat( bios, GetAppPath() ), "bios\\"), Config.Bios );
+		else
+			sprintf(bios, "%s/%s", Config.BiosDir, Config.Bios);
 		f = fopen(bios, "rb");
 
 		if (f == NULL) {
