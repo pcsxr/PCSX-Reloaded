@@ -139,6 +139,8 @@ void psxMemReset() {
 			fread(psxR, 1, 0x80000, f);
 			fclose(f);
 			Config.HLE = FALSE;
+
+			SysPrintf(_("Loaded BIOS: %s\n"), bios );
 		}
 	} else Config.HLE = TRUE;
 }

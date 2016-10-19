@@ -543,9 +543,9 @@ static int LoadBin( unsigned long addr, char* filename ) {
 	}
 
 	if( result == 0 )
-		SysPrintf(_("ng reading bin file: [0x%08x] : %s\n"), addr, filename );
+		SysPrintf(_("ng Load Bin file: [0x%08x] : %s\n"), addr, filename );
 	else
-		SysPrintf(_("ok reading bin file: [0x%08x] : %s\n"), addr, filename );
+		SysPrintf(_("ok Load Bin file: [0x%08x] : %s\n"), addr, filename );
 
 	return result;
 }
