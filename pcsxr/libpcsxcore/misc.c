@@ -519,7 +519,9 @@ int Load(const char *ExePath) {
 	return retval;
 }
 
-static void LoadBin( unsigned long addr, char* filename ) {
+static int LoadBin( unsigned long addr, char* filename ) {
+	int result = -1;
+
 	FILE *f;
 	long len;
 	unsigned long mem = addr & 0x001fffff;
@@ -531,11 +533,21 @@ static void LoadBin( unsigned long addr, char* filename ) {
 		len = ftell(f);
 		fseek(f,0,SEEK_SET);
 		if( len + mem < 0x00200000 ) {
-			if( psxM )
-				fread(psxM + mem, len, 1, f);
+			if( psxM ) {
+				int readsize = fread(psxM + mem, len, 1, f);
+				if( readsize == len )
+					result = 0;
+			}
 		}
 		fclose(f);
 	}
+
+	if( result == 0 )
+		SysPrintf(_("ng Load Bin file: [0x%08x] : %s\n"), addr, filename );
+	else
+		SysPrintf(_("ok Load Bin file: [0x%08x] : %s\n"), addr, filename );
+
+	return result;
 }
 
 int LoadLdrFile(const char *LdrPath ) {
