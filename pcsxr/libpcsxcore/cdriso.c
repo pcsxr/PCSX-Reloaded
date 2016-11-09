@@ -267,14 +267,14 @@ static int decode_compressed_cdda_track(FILE* outfile, const char* infilepath, s
 		}
 
 		if (!decoded_frame) {
-			if (!(decoded_frame = avcodec_alloc_frame())) {
+			if (!(decoded_frame = av_frame_alloc())) {
 				SysMessage(_(" -> Error allocating audio frame buffer. This track will not be available."));
 				avformat_close_input(&inAudioFormat);
 				av_free(&decoded_frame);
 				return 1; // error decoding frame
 			}
 		} else {
-			avcodec_get_frame_defaults(decoded_frame);
+			av_frame_unref(decoded_frame);
 		}
 		len = avcodec_decode_audio4(c, decoded_frame, &got_frame, &avpkt);
 		if (len > 0 && got_frame) {
