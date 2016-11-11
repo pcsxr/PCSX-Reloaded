@@ -18,6 +18,7 @@
 
 #include "Linux.h"
 #include "../libpcsxcore/psxmem.h"
+#include "../libpcsxcore/r3000a.h"
 #include <gtk/gtk.h>
 
 #define MEMVIEW_MAX_LINES 256
@@ -283,6 +284,9 @@ static void MemView_Patch() {
 				}
 
 				psxMemWrite8(addr, (u8)val);
+#ifdef PSXREC
+				psxCpu->Clear(addr, 1);
+#endif
 				addr++;
 			}
 
