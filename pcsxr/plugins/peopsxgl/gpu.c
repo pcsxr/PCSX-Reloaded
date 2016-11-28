@@ -35,6 +35,10 @@ static int iOldMode=0;
 
 #endif
 
+#if defined(__linux__)
+#include <sys/wait.h>
+#endif
+
 #define _IN_GPU
 
 #include "externals.h"

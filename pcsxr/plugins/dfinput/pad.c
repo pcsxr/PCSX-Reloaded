@@ -22,6 +22,7 @@
 #include <sys/file.h>
 #include <time.h>
 #endif
+#include <sys/wait.h>
 
 #if SDL_VERSION_ATLEAST(2,0,0)
 int has_haptic;

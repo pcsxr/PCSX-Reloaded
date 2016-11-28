@@ -20,6 +20,7 @@
  */
 
 #include "cdr.h"
+#include <sys/wait.h>
 
 #ifndef USE_NULL
 static char *LibName = N_("CD-ROM Drive Reader");
