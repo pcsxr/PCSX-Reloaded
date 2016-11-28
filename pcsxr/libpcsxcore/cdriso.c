@@ -1582,7 +1582,7 @@ int aropen(FILE* fparchive, const char* _fn) {
 	if (a == NULL && cdimage_buffer == NULL) {
 		// We open file twice. First to peek sizes. This nastyness due used interface.
 		a = archive_read_new();
-		r = archive_read_support_compression_all(a);
+//		r = archive_read_support_filter_all(a);
 		r = archive_read_support_format_all(a);
 		//r = archive_read_support_filter_all(a);
 		//r = archive_read_support_format_raw(a);
@@ -1609,7 +1609,7 @@ int aropen(FILE* fparchive, const char* _fn) {
 		}
 		//Now really open the file
 		a = archive_read_new();
-		r = archive_read_support_compression_all(a);
+//		r = archive_read_support_compression_all(a);
 		r = archive_read_support_format_all(a);
 		archive_read_open_filename(a, _fn, 75*CD_FRAMESIZE_RAW);
 		while ((r=archive_read_next_header(a, &ae)) == ARCHIVE_OK) {
