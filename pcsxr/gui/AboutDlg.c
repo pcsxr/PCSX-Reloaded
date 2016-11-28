@@ -88,11 +88,11 @@ void RunAboutDialog(void) {
 		"You should have received a copy of the GNU General Public License "
 		"along with this program. If not, see <http://www.gnu.org/licenses/>.");
 	
-	logo = gdk_pixbuf_new_from_file(PIXMAPDIR "pcsxr-icon.png", NULL);
+	logo = gdk_pixbuf_new_from_resource("/org/pcsxr/gui/pixmaps/pcsxr-icon.png", NULL);
 
 	builder = gtk_builder_new();
 	
-	if (!gtk_builder_add_from_file(builder, PACKAGE_DATA_DIR "pcsxr.ui", NULL)) {
+	if (!gtk_builder_add_from_resource(builder, "/org/pcsxr/gui/pcsxr.ui", NULL)) {
 		g_warning("Error: interface could not be loaded!");
 		return;
 	}
