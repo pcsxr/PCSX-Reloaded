@@ -34,6 +34,7 @@
 
 #include "../libpcsxcore/plugins.h"
 #include "../libpcsxcore/cheat.h"
+#include "../libpcsxcore/cdrom.h"
 
 #include "MemcardDlg.h"
 #include "ConfDlg.h"
