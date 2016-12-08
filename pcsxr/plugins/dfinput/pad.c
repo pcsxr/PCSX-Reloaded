@@ -17,12 +17,15 @@
  */
 
 #include "pad.h"
-#if !SDL_VERSION_ATLEAST(2,0,0) && defined(__linux__)
+#if defined(__linux__)
+#include <sys/types.h>
+#include <sys/wait.h>
+#if !SDL_VERSION_ATLEAST(2,0,0)
 #include <linux/input.h>
 #include <sys/file.h>
 #include <time.h>
 #endif
-#include <sys/wait.h>
+#endif
 
 #if SDL_VERSION_ATLEAST(2,0,0)
 int has_haptic;

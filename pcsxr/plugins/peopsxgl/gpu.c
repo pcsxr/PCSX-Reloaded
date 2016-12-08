@@ -1093,13 +1093,7 @@ long GPUopen(unsigned long * disp,char * CapText,char * CfgFile)
  GLinitialize();                                       // init opengl
 
  if(disp)
-  {
-#if defined (_MACGL)
-   *disp = display;
-#else
-   *disp=(unsigned long *)display;                       // return display ID to main emu
-#endif
-  }
+   *disp = (unsigned long)display;                     // return display ID to main emu
 
  if(display) return 0;
  return -1;
