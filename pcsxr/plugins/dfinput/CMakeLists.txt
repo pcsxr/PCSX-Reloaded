@@ -69,14 +69,14 @@ compile_gresources(RESOURCE_FILE
 
 add_custom_target(dfinput_resource DEPENDS ${RESOURCE_FILE})
 
-include_directories(${CMAKE_SOURCE_DIR}/libpcsxcore)
+include_directories(${CMAKE_SOURCE_DIR}/libpcsxcore ${X11_X11_INCLUDE_PATH})
 add_library(DFInput MODULE ${PLUGIN_SRCS})
 target_link_libraries(DFInput ${SDL_LIBRARY} ${SDL2_LIBRARY} ${X11_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
 
 add_executable(cfgDFInput ${GUI_SRCS} ${RESOURCE_FILE})
 add_dependencies(cfgDFInput dfinput_resource)
-target_link_libraries(cfgDFInput ${GTK_LIBRARIES} ${SDL_LIBRARY} ${SDL2_LIBRARY} ${X11_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(cfgDFInput ${GTK_LIBRARIES} ${SDL_LIBRARY} ${SDL2_LIBRARY} ${X11_LIBRARIES})
 
 install(TARGETS DFInput LIBRARY DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR}/games/psemu)
 install(TARGETS cfgDFInput RUNTIME DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR}/games/psemu)

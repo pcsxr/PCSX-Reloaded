@@ -36,6 +36,13 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL GNU)
     endif()
 endif()
 
+option(BUILD_SIO1 "Build SIO1 plugin." On)
+option(BUILD_OPENGL "Build OpenGL plugin." On)
+
+if (BUILD_SIO1)
+  add_definitions(-DENABLE_SIO1API)
+endif()
+
 #components
 add_subdirectory(libpcsxcore)
 add_subdirectory(gui)

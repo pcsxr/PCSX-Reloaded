@@ -62,9 +62,9 @@ compile_gresources(RESOURCE_FILE
 
 add_custom_target(peopsxgl_resource DEPENDS ${RESOURCE_FILE})
 
-include_directories(${CMAKE_SOURCE_DIR}/libpcsxcore)
+include_directories(${CMAKE_SOURCE_DIR}/libpcsxcore ${X11_X11_INCLUDE_PATH} ${X11_xf86vmode_INCLUDE_PATH} ${OPENGL_INCLUDE_DIR})
 add_library(peopsxgl MODULE ${PLUGIN_SRCS})
-target_link_libraries(peopsxgl ${X11_LIBRARIES} ${OPENGL_gl_LIBRARY})
+target_link_libraries(peopsxgl ${X11_LIBRARIES} ${X11_Xxf86vm_LIB} ${OPENGL_gl_LIBRARY})
 
 
 add_executable(cfgpeopsxgl ${GUI_SRCS} ${RESOURCE_FILE})

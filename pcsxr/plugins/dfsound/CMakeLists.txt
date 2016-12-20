@@ -62,6 +62,8 @@ elseif (${SND_BACKEND} STREQUAL "null")
 
 endif()
 
+find_package(Threads REQUIRED)
+
 #defs
 add_definitions(-DLOCALE_DIR="${CMAKE_INSTALL_FULL_DATAROOTDIR}/locale/" -DPSEMU_DATA_DIR="${CMAKE_INSTALL_FULL_DATAROOTDIR}/psemu" -DDEF_PLUGIN_DIR="${CMAKE_INSTALL_FULL_LIBDIR}/games/psemu")
 
@@ -105,19 +107,19 @@ if (${SND_BACKEND} STREQUAL "oss")
 
 elseif (${SND_BACKEND} STREQUAL "alsa")
     add_library(DFSound MODULE ${PLUGIN_SRCS} alsa.c)
-    target_link_libraries(DFSound ${ALSA_LIBRARIES})
+    target_link_libraries(DFSound ${ALSA_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
 elseif (${SND_BACKEND} STREQUAL "pulse")
     add_library(DFSound MODULE ${PLUGIN_SRCS} pulseaudio.c)
-    target_link_libraries(DFSound ${PULSEAUDIO_LIBRARY})
+    target_link_libraries(DFSound ${PULSEAUDIO_LIBRARY} ${CMAKE_THREAD_LIBS_INIT})
 
 elseif (${SND_BACKEND} STREQUAL "sdl")
     add_library(DFSound MODULE ${PLUGIN_SRCS} sdl.c)
-    target_link_libraries(DFSound ${SDL_LIBRARY} ${SDL2_LIBRARY})
+    target_link_libraries(DFSound ${SDL_LIBRARY} ${SDL2_LIBRARY} ${CMAKE_THREAD_LIBS_INIT})
 
 elseif (${SND_BACKEND} STREQUAL "openal")
     add_library(DFSound MODULE ${PLUGIN_SRCS} openal.c)
-    target_link_libraries(DFSound ${OPENAL_LIBRARY})
+    target_link_libraries(DFSound ${OPENAL_LIBRARY} ${CMAKE_THREAD_LIBS_INIT})
 
 elseif (${SND_BACKEND} STREQUAL "null")
     add_library(DFSound MODULE ${PLUGIN_SRCS} nullsnd.c)

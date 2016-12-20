@@ -56,13 +56,13 @@ compile_gresources(RESOURCE_FILE
 
 add_custom_target(dfxvideo_resource DEPENDS ${RESOURCE_FILE})
 
-include_directories(${CMAKE_SOURCE_DIR}/libpcsxcore)
+include_directories(${CMAKE_SOURCE_DIR}/libpcsxcore ${X11_X11_INCLUDE_PATH} ${X11_Xv_INCLUDE_PATH} ${X11_XShm_INCLUDE_PATH})
 add_library(DFXVideo MODULE ${PLUGIN_SRCS})
-target_link_libraries(DFXVideo ${X11_LIBRARIES} -lm)
+target_link_libraries(DFXVideo ${X11_LIBRARIES} ${X11_Xv_LIB} ${X11_Xext_LIB} -lm)
 
 
 add_executable(cfgDFXVideo ${GUI_SRCS} ${RESOURCE_FILE})
-add_dependencies(cfgDFXVideo bladesio1_resource)
+add_dependencies(cfgDFXVideo dfxvideo_resource)
 target_link_libraries(cfgDFXVideo ${GTK_LIBRARIES})
 
 install(TARGETS DFXVideo LIBRARY DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR}/games/psemu)
