@@ -240,7 +240,7 @@ static void MemView_Patch() {
 	gtk_grid_set_column_spacing(GTK_GRID(table), 5);
 
 	label = gtk_label_new(_("Address (Hexadecimal):"));
-	gtk_grid_attach(GTK_GRID(table), label, 0, 1, 1, 1);
+	gtk_grid_attach(GTK_GRID(table), label, 0, 0, 1, 1);
 	gtk_widget_show(label);
 
 	addr_edit = gtk_entry_new();
