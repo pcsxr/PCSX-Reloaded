@@ -691,7 +691,7 @@ int SaveStateMem(const u32 id) {
 	char name[32];
 	int ret = -1;
 
-	snprintf(name, 32, SHM_SS_NAME_TEMPLATE, id);
+	snprintf(name, sizeof(name), SHM_SS_NAME_TEMPLATE, id);
 	int fd = shm_open(name, O_CREAT | O_RDWR | O_TRUNC, 0666);
 
 	if (fd >= 0) {
@@ -714,7 +714,7 @@ int LoadStateMem(const u32 id) {
 	char name[32];
 	int ret = -1;
 
-	snprintf(name, 32, SHM_SS_NAME_TEMPLATE, id);
+	snprintf(name, sizeof(name), SHM_SS_NAME_TEMPLATE, id);
 	int fd = shm_open(name, O_RDONLY, 0444);
 
 	if (fd >= 0) {
