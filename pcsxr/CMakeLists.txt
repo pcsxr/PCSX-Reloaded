@@ -1,9 +1,11 @@
-cmake_minimum_required(VERSION 3.3.0)
+cmake_minimum_required(VERSION 3.4.0)
+cmake_policy(SET CMP0065 NEW)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake/macros)
 
 set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build")
+set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS Debug Release RelWithDebInfo MinSizeRel)
 
 project(pcsxr)
 
