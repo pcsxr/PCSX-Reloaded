@@ -68,15 +68,15 @@ static void CreateMemcard(char *filename, char *conf_mcd) {
 
 /* Create a directory under the $HOME directory, if that directory doesn't already exist */
 static void CreateHomeConfigDir(char *directory) {
+	// modified by fuhz
 	struct stat buf;
-
-	if (stat(directory, &buf) == -1) {
-		gchar *dir_name = g_build_filename (getenv("HOME"), directory, NULL);
+	gchar *dir_name = g_build_filename (getenv("HOME"), directory, NULL);
+	if (stat(dir_name, &buf) == -1) {
 		mkdir(dir_name, S_IRWXU | S_IRWXG);
-		g_free (dir_name);
 	}
+	g_printf("%s\n",dir_name);
+	g_free (dir_name);
 }
-
 static void CheckSubDir() {
 	// make sure that ~/.pcsxr exists
 	CreateHomeConfigDir(PCSXR_DOT_DIR);
@@ -92,6 +92,7 @@ static void CheckSubDir() {
 
 static void ScanPlugins(gchar* scandir) {
 	// scan for plugins and configuration tools
+	// modified by fuhz to support snap
 	DIR *dir;
 	struct dirent *ent;
 
@@ -99,10 +100,17 @@ static void ScanPlugins(gchar* scandir) {
 	gchar *filename;
 
 	/* Any plugins found will be symlinked to the following directory */
-	dir = opendir(scandir);
+	gchar *snap = getenv("SNAP");
+	gchar *snap_scandir;
+        if (snap!=NULL) {
+		snap_scandir = g_strdup_printf("%s%s",snap,scandir);
+	}else{
+		snap_scandir = g_strdup(scandir);
+	}
+	dir = opendir(snap_scandir);
 	if (dir != NULL) {
 		while ((ent = readdir(dir)) != NULL) {
-			filename = g_build_filename (scandir, ent->d_name, NULL);
+			filename = g_build_filename (snap_scandir, ent->d_name, NULL);
 
 			if (match(filename, ".*\\.so$") == 0 &&
 				match(filename, ".*\\.dylib$") == 0 &&
@@ -125,10 +133,12 @@ static void ScanPlugins(gchar* scandir) {
 		}
 		closedir(dir);
 	}
+	g_free(snap_scandir);
 }
 
 static void ScanBios(gchar* scandir) {
 	// scan for bioses
+	// modified by fuhz to support snap
 	DIR *dir;
 	struct dirent *ent;
 
@@ -136,10 +146,17 @@ static void ScanBios(gchar* scandir) {
 	gchar *filename;
 
 	/* Any bioses found will be symlinked to the following directory */
-	dir = opendir(scandir);
+	gchar *snap = getenv("SNAP");
+	gchar *snap_scandir;
+        if (snap!=NULL) {
+		snap_scandir = g_strdup_printf("%s%s",snap,scandir);
+	}else{
+		snap_scandir = g_strdup(scandir);
+	}
+	dir = opendir(snap_scandir);
 	if (dir != NULL) {
 		while ((ent = readdir(dir)) != NULL) {
-			filename = g_build_filename(scandir, ent->d_name, NULL);
+			filename = g_build_filename(snap_scandir, ent->d_name, NULL);
 
 			if (match(filename, ".*\\.bin$") == 0 &&
 				match(filename, ".*\\.BIN$") == 0) {
@@ -155,6 +172,7 @@ static void ScanBios(gchar* scandir) {
 		}
 		closedir(dir);
 	}
+	g_free(snap_scandir);
 }
 
 static void CheckSymlinksInPath(char* dotdir) {
