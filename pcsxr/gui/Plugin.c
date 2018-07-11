@@ -349,8 +349,8 @@ int _OpenPlugins() {
 		netInfo info;
 		char path[MAXPATHLEN];
 		char dotdir[MAXPATHLEN];
-
-		strncpy(dotdir, getenv("HOME"), MAXPATHLEN-100);
+                //modified by fuhz
+		strcpy(dotdir, getenv("HOME"));
 		strcat(dotdir, "/.pcsxr/plugins/");
 
 		strcpy(info.EmuName, "PCSXR " PACKAGE_VERSION);
